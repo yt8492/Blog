@@ -5,15 +5,17 @@
       <configuration version="3" platform="JavaScript " allPlatforms="JS []" useProjectSettings="false" isTestModule="true" externalProjectId=":common">
         <dependsOnModuleNames>:common:commonTest</dependsOnModuleNames>
         <sourceSets>
-          <sourceSet>Blog.common.jsMain</sourceSet>
-          <sourceSet>Blog.common.commonMain</sourceSet>
           <sourceSet>Blog.common.commonTest</sourceSet>
+          <sourceSet>Blog.common.commonMain</sourceSet>
+          <sourceSet>Blog.common.jsMain</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <externalSystemTestTasks>
           <externalSystemTestTask>jsBrowserTest|:common:jsTest|js</externalSystemTestTask>
         </externalSystemTestTasks>
-        <compilerSettings />
+        <compilerSettings>
+          <option name="additionalArguments" value="-XXLanguage:+InlineClasses" />
+        </compilerSettings>
         <compilerArguments>
           <option name="outputFile" value="$MODULE_DIR$/../../../build/js/packages/Blog-common-test/kotlin/Blog-common-test.js" />
           <option name="noStdlib" value="true" />

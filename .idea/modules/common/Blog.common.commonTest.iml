@@ -9,7 +9,9 @@
           <externalSystemTestTask>jvmTest|:common:jvmTest|jvm</externalSystemTestTask>
           <externalSystemTestTask>macosX64Test|:common:macosX64Test|macosX64</externalSystemTestTask>
         </externalSystemTestTasks>
-        <compilerSettings />
+        <compilerSettings>
+          <option name="additionalArguments" value="-XXLanguage:+InlineClasses" />
+        </compilerSettings>
         <compilerArguments>
           <option name="languageVersion" value="1.4" />
           <option name="apiVersion" value="1.4" />
