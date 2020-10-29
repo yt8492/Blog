@@ -1,0 +1,94 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Blog
+  description: Mayamito's blog
+servers:
+  - url: http://localhost:8080
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Entry:
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        content:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+paths:
+  /entries:
+    get:
+      summary: Get entries
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: number
+          description: Page number
+          required: true
+      responses:
+        '200':
+          description: Get entries success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entry'
+    post:
+      summary: Create entry
+      security:
+        - Bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Create entry success
+  /entries/{id}:
+    get:
+      summary: Get entry
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+          description: Entry id
+      responses:
+        '200':
+          description: Get entry success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+        '404':
+          description: Entry not found
