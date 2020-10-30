@@ -129,3 +129,19 @@ paths:
           description: Edit entry success
         '404':
           description: Entry not found
+    delete:
+      summary: Delete entry
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+          description: Entry id
+      responses:
+        '204':
+          description: Delete entry success
+        '404':
+          description: Entry not found
