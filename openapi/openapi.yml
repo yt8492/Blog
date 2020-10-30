@@ -24,6 +24,8 @@ components:
           type: array
           items:
             type: string
+        is_preview:
+          type: boolean
         created_at:
           type: string
         updated_at:
@@ -70,6 +72,8 @@ paths:
                   type: array
                   items:
                     type: string
+                is_preview:
+                  type: boolean
       responses:
         '201':
           description: Create entry success

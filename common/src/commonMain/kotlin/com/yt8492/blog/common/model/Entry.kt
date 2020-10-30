@@ -6,6 +6,7 @@ data class Entry(
     val title: String,
     val content: String,
     val tags: List<String>,
+    val isPreview: Boolean,
     val createdAt: DateTime,
     val updatedAt: DateTime
 )
