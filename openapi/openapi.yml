@@ -96,3 +96,36 @@ paths:
                 $ref: '#/components/schemas/Entry'
         '404':
           description: Entry not found
+    patch:
+      summary: Edit entry
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+          description: Entry id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                is_preview:
+                  type: boolean
+      responses:
+        '201':
+          description: Edit entry success
+        '404':
+          description: Entry not found
