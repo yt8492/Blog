@@ -9,3 +9,10 @@ services:
       SWAGGER_JSON: /openapi/openapi.yml
     volumes:
       - ./openapi:/openapi
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "blog-server"
+    ports:
+      - "8080:8080"

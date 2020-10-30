@@ -1,2 +1,2 @@
 rootProject.name = "Blog"
-include("common")
+include("common", "server")
