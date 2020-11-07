@@ -64,6 +64,8 @@ paths:
             schema:
               type: object
               properties:
+                id:
+                  type: string
                 title:
                   type: string
                 content:
@@ -77,6 +79,10 @@ paths:
       responses:
         '201':
           description: Create entry success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
   /entries/{id}:
     get:
       summary: Get entry
