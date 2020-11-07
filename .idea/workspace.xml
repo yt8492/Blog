@@ -23,13 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56152cd6-a553-48c8-b023-552e92e6fea2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jsTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jsTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.linuxX64Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.linuxX64Test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.macosX64Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.macosX64Test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.mingwX64Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.mingwX64Test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/yt8492/blog/server/domain/EntryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/yt8492/blog/server/domain/EntryRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +195,7 @@
       <workItem from="1604084401348" duration="655000" />
       <workItem from="1604085450449" duration="131000" />
       <workItem from="1604085600417" duration="4546000" />
-      <workItem from="1604322408654" duration="2001000" />
+      <workItem from="1604322408654" duration="2428000" />
     </task>
     <servers />
   </component>

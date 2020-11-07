@@ -7,4 +7,5 @@ interface EntryRepository {
 
     suspend fun findById(id: EntryId): Entry
     suspend fun findAll(page: Int): List<Entry>
+    suspend fun createEntry(entry: Entry)
 }
