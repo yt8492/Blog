@@ -1,4 +1,4 @@
-package com.yt8492.blog.server.domain
+package com.yt8492.blog.server.domain.repository
 
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
