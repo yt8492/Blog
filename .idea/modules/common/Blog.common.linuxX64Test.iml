@@ -6,8 +6,8 @@
         <dependsOnModuleNames>:common:commonTest</dependsOnModuleNames>
         <sourceSets>
           <sourceSet>Blog.common.commonTest</sourceSet>
-          <sourceSet>Blog.common.linuxX64Main</sourceSet>
           <sourceSet>Blog.common.commonMain</sourceSet>
+          <sourceSet>Blog.common.linuxX64Main</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <compilerSettings />

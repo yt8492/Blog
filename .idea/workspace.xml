@@ -23,30 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56152cd6-a553-48c8-b023-552e92e6fea2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.commonMain.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.commonTest.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jsMain.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jsTest.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jvmMain.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jvmTest.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.linuxX64Main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.linuxX64Test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.macosX64Main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.macosX64Test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.mingwX64Main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.mingwX64Test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jsTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.jsTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.linuxX64Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.linuxX64Test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.macosX64Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.macosX64Test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/common/Blog.common.mingwX64Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/Blog.common.mingwX64Test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +77,7 @@
       <list>
         <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
         <option value="Kotlin File" />
       </list>
     </option>
@@ -145,20 +129,22 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Blog [build]">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleKonanAppRunConfiguration" factoryName="Application">
+      <method v="2">
+        <option name="com.jetbrains.mpp.MPPBuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="linuxX64.test" type="GradleKonanAppRunConfiguration" factoryName="Application" TARGET_TYPE="linux_x64" TARGET="linuxX64" BINARY="test" PREFIX=":common:" WORKING_DIR="">
@@ -214,7 +200,8 @@
       <workItem from="1604082679262" duration="939000" />
       <workItem from="1604084401348" duration="655000" />
       <workItem from="1604085450449" duration="131000" />
-      <workItem from="1604085600417" duration="3067000" />
+      <workItem from="1604085600417" duration="4546000" />
+      <workItem from="1604322408654" duration="2001000" />
     </task>
     <servers />
   </component>
