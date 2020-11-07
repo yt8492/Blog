@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":common"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
     implementation("io.ktor:ktor-server-netty:1.4.1")
