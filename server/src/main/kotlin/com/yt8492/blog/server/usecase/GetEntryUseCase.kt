@@ -8,7 +8,10 @@ interface GetEntryUseCase : UseCase<GetEntryUseCase.Arg, GetEntryUseCase.Result>
         val id: EntryId
     )
 
-    data class Result(
-        val entry: Entry
-    )
+    sealed class Result {
+        data class Success(val entry: Entry) : Result()
+        sealed class Failure : Result() {
+            object EntryNotFound : Failure()
+        }
+    }
 }

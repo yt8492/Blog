@@ -12,7 +12,10 @@ interface CreateEntryUseCase : UseCase<CreateEntryUseCase.Arg, CreateEntryUseCas
         val isPreview: Boolean
     )
 
-    data class Result(
-        val entry: Entry
-    )
+    sealed class Result {
+        data class Success(val entry: Entry) : Result()
+        sealed class Failure : Result() {
+            object EntryIdDuplicated : Failure()
+        }
+    }
 }

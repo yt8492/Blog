@@ -10,7 +10,11 @@ interface SignInUseCase : UseCase<SignInUseCase.Arg, SignInUseCase.Result> {
         val password: Password.Raw
     )
 
-    data class Result(
-        val token: AuthToken
-    )
+    sealed class Result {
+        data class Success(val token: AuthToken) : Result()
+        sealed class Failure : Result() {
+            object UserIdNotFound : Failure()
+            object InvalidPassword : Failure()
+        }
+    }
 }
