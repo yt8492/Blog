@@ -5,7 +5,8 @@ import com.yt8492.blog.common.model.EntryId
 
 interface EntryRepository {
 
-    suspend fun findById(id: EntryId): Entry
-    suspend fun findAll(page: Int): List<Entry>
-    suspend fun createEntry(entry: Entry)
+    suspend fun findById(id: EntryId): Entry?
+    suspend fun findAllPublic(page: Int): List<Entry>
+    suspend fun create(entry: Entry): Entry
+    suspend fun update(entry: Entry): Entry
 }
