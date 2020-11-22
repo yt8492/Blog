@@ -12,9 +12,6 @@ interface SignInUseCase : UseCase<SignInUseCase.Arg, SignInUseCase.Result> {
 
     sealed class Result {
         data class Success(val token: AuthToken) : Result()
-        sealed class Failure : Result() {
-            object UserIdNotFound : Failure()
-            object InvalidPassword : Failure()
-        }
+        object Failure : Result()
     }
 }

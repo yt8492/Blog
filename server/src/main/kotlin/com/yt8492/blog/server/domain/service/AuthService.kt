@@ -5,5 +5,5 @@ import com.yt8492.blog.common.model.Password
 import com.yt8492.blog.common.model.UserId
 
 interface AuthService {
-    suspend fun signIn(id: UserId, password: Password.Raw): AuthToken
+    suspend fun signIn(id: UserId, password: Password.Raw): AuthToken?
 }

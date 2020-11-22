@@ -5,5 +5,5 @@ import com.yt8492.blog.common.model.UserId
 
 interface UserRepository {
 
-    suspend fun findById(id: UserId): User
+    suspend fun findById(id: UserId): User?
 }
