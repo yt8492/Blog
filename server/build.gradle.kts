@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.4.10"
@@ -7,6 +9,10 @@ plugins {
 
 application {
     mainClassName = "io.ktor.server.netty.EngineMain"
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
 
 repositories {
