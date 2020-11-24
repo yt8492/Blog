@@ -11,12 +11,13 @@ class EditEntryUseCaseImpl(
     override suspend fun execute(input: EditEntryUseCase.Arg): EditEntryUseCase.Result {
         val entry = entryRepository.findById(input.id)
             ?: return EditEntryUseCase.Result.Failure.EntryNotFound
+        val id = input.newId ?: entry.id
         val title = input.title ?: entry.title
         val content = input.content ?: entry.content
         val tags = input.tags ?: entry.tags
         val isPreview = input.isPreview ?: entry.isPreview
         val editedEntry = Entry(
-            id = input.id,
+            id = id,
             title = title,
             content = content,
             tags = tags,
