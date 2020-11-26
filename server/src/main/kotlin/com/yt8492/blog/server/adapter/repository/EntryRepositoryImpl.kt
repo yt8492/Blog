@@ -47,11 +47,11 @@ class EntryRepositoryImpl : EntryRepository {
     override suspend fun update(entry: Entry): Entry {
         transaction {
             val dao = EntryDao.findById(entry.id.value)
+            val existTags = TagDao.find { TagTable.name inList entry.tags }
+            val notExistTags = (entry.tags - existTags.map { it.name }).map {
+                TagDao.new { name = it }
+            }
             dao?.apply {
-                val existTags = TagDao.find { TagTable.name inList entry.tags }
-                val notExistTags = (entry.tags - existTags.map { it.name }).map {
-                    TagDao.new { name = it }
-                }
                 title = entry.title
                 content = entry.content
                 tags = SizedCollection(existTags + notExistTags)
@@ -61,5 +61,12 @@ class EntryRepositoryImpl : EntryRepository {
             }
         }
         return entry
+    }
+
+    override suspend fun delete(id: EntryId):Boolean {
+        return transaction {
+            EntryDao.findById(id.value)
+                ?.delete()
+        } != null
     }
 }

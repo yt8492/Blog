@@ -9,4 +9,5 @@ interface EntryRepository {
     suspend fun findAllPublic(page: Int): List<Entry>
     suspend fun create(entry: Entry): Entry
     suspend fun update(entry: Entry): Entry
+    suspend fun delete(id: EntryId): Boolean
 }
