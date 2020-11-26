@@ -9,6 +9,12 @@ class EditEntryUseCaseImpl(
     private val entryRepository: EntryRepository
 ) : EditEntryUseCase {
     override suspend fun execute(input: EditEntryUseCase.Arg): EditEntryUseCase.Result {
+        if (input.newId != null) {
+            val entry = entryRepository.findById(input.newId)
+            if (entry != null) {
+                return EditEntryUseCase.Result.Failure.EntryIdDuplicated
+            }
+        }
         val entry = entryRepository.findById(input.id)
             ?: return EditEntryUseCase.Result.Failure.EntryNotFound
         val id = input.newId ?: entry.id

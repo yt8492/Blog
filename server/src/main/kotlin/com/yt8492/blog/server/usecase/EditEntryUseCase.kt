@@ -17,6 +17,7 @@ interface EditEntryUseCase : UseCase<EditEntryUseCase.Arg, EditEntryUseCase.Resu
         data class Success(val entry: Entry) : Result()
         sealed class Failure : Result() {
             object EntryNotFound : Failure()
+            object EntryIdDuplicated : Failure()
         }
     }
 }
