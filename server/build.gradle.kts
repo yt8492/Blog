@@ -41,6 +41,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:0.28.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.28.1")
     implementation("org.jetbrains.exposed:exposed-java-time:0.28.1")
+    implementation("org.koin:koin-ktor:2.2.1")
 
     testImplementation("io.kotest:kotest-runner-junit5:4.3.1")
     testImplementation("io.kotest:kotest-assertions-core:4.3.1")

@@ -14,7 +14,6 @@ object AppConfig {
     val dbPassword: String = config.property("ktor.db.dbPassword").getString()
 
     val authSecret: String = config.property("ktor.auth.secret").getString()
-    val authSalt: String = config.property("ktor.auth.salt").getString()
 
     val domain: String = config.property("ktor.domain").getString()
 }
