@@ -3,6 +3,7 @@ package com.yt8492.blog.server.adapter.controller.converter
 import com.soywiz.klock.ISO8601
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.server.adapter.controller.Result
+import com.yt8492.blog.server.adapter.json.AuthResponseJson
 import com.yt8492.blog.server.adapter.json.Empty
 import com.yt8492.blog.server.adapter.json.EntryResponseJson
 import com.yt8492.blog.server.adapter.json.MessageJson
@@ -76,6 +77,21 @@ fun DeleteEntryUseCase.Result.toControllerResult(): Result {
             Result(
                 MessageJson("Entry not found"),
                 404
+            )
+    }
+}
+
+fun SignInUseCase.Result.toControllerResult(): Result {
+    return when (this) {
+        is SignInUseCase.Result.Success ->
+            Result(
+                AuthResponseJson(token.value),
+                200
+            )
+        is SignInUseCase.Result.Failure ->
+            Result(
+                MessageJson("Login failed"),
+                401
             )
     }
 }
