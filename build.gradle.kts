@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.4.10" apply false
+    kotlin("multiplatform") version "1.4.20" apply false
 }
 
 group = "org.yt8492"
