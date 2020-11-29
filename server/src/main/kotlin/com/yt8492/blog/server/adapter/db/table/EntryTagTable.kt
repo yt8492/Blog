@@ -6,7 +6,7 @@ import org.jetbrains.exposed.sql.Table
 import java.util.*
 
 object EntryTagTable : Table("entry_tags") {
-    val entryId: Column<EntityID<String>> = reference("entry_id", EntryTable)
-    val tagId: Column<EntityID<UUID>> = reference("tag_id", TagTable)
-    override val primaryKey: PrimaryKey = PrimaryKey(entryId, tagId, name = "pk_entry_tags")
+    val entryId: Column<EntityID<String>> = reference("entry", EntryTable)
+    val tagId: Column<EntityID<UUID>> = reference("tag", TagTable)
+    override val primaryKey: PrimaryKey = PrimaryKey(entryId, tagId)
 }

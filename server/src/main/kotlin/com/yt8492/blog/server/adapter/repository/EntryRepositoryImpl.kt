@@ -22,7 +22,7 @@ class EntryRepositoryImpl : EntryRepository {
     override suspend fun findAllPublic(page: Int): List<Entry> {
         return transaction {
             EntryDao.find { EntryTable.isPreview eq false }
-                .limit(10, page * 10L)
+                .limit(10, (page - 1) * 10L)
                 .map(EntryDao::toModel)
         }
     }
@@ -36,10 +36,10 @@ class EntryRepositoryImpl : EntryRepository {
             EntryDao.new(entry.id.value) {
                 title = entry.title
                 content = entry.content
-                tags = SizedCollection(existTags + notExistTags)
                 isPreview = entry.isPreview
                 createdAt = entry.createdAt.toLocalDateTime()
                 updatedAt = entry.updatedAt.toLocalDateTime()
+                tags = SizedCollection(existTags + notExistTags)
             }.toModel()
         }
     }
