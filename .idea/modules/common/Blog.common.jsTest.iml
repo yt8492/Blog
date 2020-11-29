@@ -5,9 +5,9 @@
       <configuration version="3" platform="JavaScript " allPlatforms="JS []" useProjectSettings="false" isTestModule="true" externalProjectId=":common" pureKotlinSourceFolders="$MODULE_DIR$/../../../common/src/jsMain/kotlin;/Users/yt8492/IdeaProjects/Blog/common/build/externals/Blog-common/src;/Users/yt8492/IdeaProjects/Blog/common/src/jsTest/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/jvmMain/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/jvmTest/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/linuxX64Main/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/linuxX64Main/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/macosX64Main/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/macosX64Main/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/commonMain/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/mingwX64Main/kotlin;/Users/yt8492/IdeaProjects/Blog/common/src/mingwX64Main/kotlin">
         <dependsOnModuleNames>:common:commonTest</dependsOnModuleNames>
         <sourceSets>
-          <sourceSet>Blog.common.commonMain</sourceSet>
           <sourceSet>Blog.common.jsMain</sourceSet>
           <sourceSet>Blog.common.commonTest</sourceSet>
+          <sourceSet>Blog.common.commonMain</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <externalSystemTestTasks>

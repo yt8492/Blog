@@ -5,6 +5,7 @@ import com.yt8492.blog.server.adapter.json.CreateEntryRequestJson
 import com.yt8492.blog.server.adapter.json.EditEntryRequestJson
 import com.yt8492.blog.server.adapter.json.MessageJson
 import io.ktor.application.*
+import io.ktor.auth.*
 import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -19,10 +20,12 @@ fun Route.entryRouter(controller: EntryController) {
             call.respondResult(result)
         }
 
-        post {
-            val body = call.receive<CreateEntryRequestJson>()
-            val result = controller.createEntry(body)
-            call.respondResult(result)
+        authenticate {
+            post {
+                val body = call.receive<CreateEntryRequestJson>()
+                val result = controller.createEntry(body)
+                call.respondResult(result)
+            }
         }
 
         route("/{id}") {
@@ -32,17 +35,19 @@ fun Route.entryRouter(controller: EntryController) {
                 call.respondResult(result)
             }
 
-            patch {
-                val id = getStringPathParameterOrRespondBadRequest("id") ?: return@patch
-                val body = call.receive<EditEntryRequestJson>()
-                val result = controller.editEntry(id, body)
-                call.respondResult(result)
-            }
+            authenticate {
+                patch {
+                    val id = getStringPathParameterOrRespondBadRequest("id") ?: return@patch
+                    val body = call.receive<EditEntryRequestJson>()
+                    val result = controller.editEntry(id, body)
+                    call.respondResult(result)
+                }
 
-            delete {
-                val id = getStringPathParameterOrRespondBadRequest("id") ?: return@delete
-                val result = controller.deleteEntry(id)
-                call.respondResult(result)
+                delete {
+                    val id = getStringPathParameterOrRespondBadRequest("id") ?: return@delete
+                    val result = controller.deleteEntry(id)
+                    call.respondResult(result)
+                }
             }
         }
     }

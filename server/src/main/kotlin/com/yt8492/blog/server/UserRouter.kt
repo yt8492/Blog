@@ -6,7 +6,7 @@ import io.ktor.application.*
 import io.ktor.request.*
 import io.ktor.routing.*
 
-fun Route.userController(controller: UserController) {
+fun Route.userRouter(controller: UserController) {
     route("/login") {
         post {
             val body = call.receive<SignInRequestJson>()
