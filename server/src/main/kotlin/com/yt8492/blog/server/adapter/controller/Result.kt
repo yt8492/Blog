@@ -1,6 +1,6 @@
 package com.yt8492.blog.server.adapter.controller
 
-import com.yt8492.blog.server.adapter.json.Json
+import com.yt8492.blog.common.json.Json
 
 sealed class Result {
 

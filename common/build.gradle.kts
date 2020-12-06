@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
 }
 
 group = "org.yt8492"
@@ -23,6 +24,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
                 implementation("com.soywiz.korlibs.krypto:krypto:2.0.0-alpha")
                 implementation("com.soywiz.korlibs.klock:klock:2.0.0-alpha")
             }

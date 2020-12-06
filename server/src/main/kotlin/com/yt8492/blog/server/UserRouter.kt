@@ -1,7 +1,7 @@
 package com.yt8492.blog.server
 
 import com.yt8492.blog.server.adapter.controller.UserController
-import com.yt8492.blog.server.adapter.json.SignInRequestJson
+import com.yt8492.blog.common.json.SignInRequestJson
 import io.ktor.application.*
 import io.ktor.request.*
 import io.ktor.routing.*

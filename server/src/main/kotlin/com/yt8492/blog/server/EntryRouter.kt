@@ -1,9 +1,9 @@
 package com.yt8492.blog.server
 
 import com.yt8492.blog.server.adapter.controller.EntryController
-import com.yt8492.blog.server.adapter.json.CreateEntryRequestJson
-import com.yt8492.blog.server.adapter.json.EditEntryRequestJson
-import com.yt8492.blog.server.adapter.json.MessageJson
+import com.yt8492.blog.common.json.CreateEntryRequestJson
+import com.yt8492.blog.common.json.EditEntryRequestJson
+import com.yt8492.blog.common.json.MessageJson
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.http.*

@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
-    kotlin("plugin.serialization") version "1.4.10"
+    kotlin("plugin.serialization")
     id("com.github.johnrengelman.shadow") version "6.1.0"
     application
 }

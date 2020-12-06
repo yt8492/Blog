@@ -2,8 +2,8 @@ package com.yt8492.blog.server.adapter.controller
 
 import com.yt8492.blog.common.model.EntryId
 import com.yt8492.blog.server.adapter.controller.converter.toControllerResult
-import com.yt8492.blog.server.adapter.json.CreateEntryRequestJson
-import com.yt8492.blog.server.adapter.json.EditEntryRequestJson
+import com.yt8492.blog.common.json.CreateEntryRequestJson
+import com.yt8492.blog.common.json.EditEntryRequestJson
 import com.yt8492.blog.server.usecase.*
 
 class EntryController(

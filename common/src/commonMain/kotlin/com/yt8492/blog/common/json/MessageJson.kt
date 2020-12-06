@@ -1,4 +1,4 @@
-package com.yt8492.blog.server.adapter.json
+package com.yt8492.blog.common.json
 
 import kotlinx.serialization.Serializable
 

@@ -3,10 +3,10 @@ package com.yt8492.blog.server.adapter.controller.converter
 import com.soywiz.klock.ISO8601
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.server.adapter.controller.Result
-import com.yt8492.blog.server.adapter.json.AuthResponseJson
-import com.yt8492.blog.server.adapter.json.Empty
-import com.yt8492.blog.server.adapter.json.EntryResponseJson
-import com.yt8492.blog.server.adapter.json.MessageJson
+import com.yt8492.blog.common.json.AuthResponseJson
+import com.yt8492.blog.common.json.Empty
+import com.yt8492.blog.common.json.EntryResponseJson
+import com.yt8492.blog.common.json.MessageJson
 import com.yt8492.blog.server.usecase.*
 
 fun GetEntryUseCase.Result.toControllerResult(): Result {
