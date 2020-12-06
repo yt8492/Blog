@@ -42,6 +42,13 @@ fun Application.module(testing: Boolean = false) {
         modules(domainModule, useCaseModule, adapterModule, mainModule)
     }
 
+    install(CORS) {
+        anyHost()
+        method(HttpMethod.Post)
+        allowSameOrigin = false
+        allowNonSimpleContentTypes = true
+    }
+
     install(StatusPages) {
         exception<Throwable> {
             log.error("unknown error", it)
@@ -76,4 +83,3 @@ fun Application.module(testing: Boolean = false) {
         userRouter(userController)
     }
 }
-
