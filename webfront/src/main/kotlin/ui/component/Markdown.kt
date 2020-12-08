@@ -1,4 +1,4 @@
-package component
+package ui.component
 
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator

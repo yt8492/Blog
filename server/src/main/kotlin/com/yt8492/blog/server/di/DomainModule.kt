@@ -17,6 +17,6 @@ val domainModule = module {
         UserRepositoryImpl()
     }
     single<AuthService> {
-        AuthServiceImpl(AppConfig.domain, AppConfig.authSecret, get())
+        AuthServiceImpl(get(), get())
     }
 }

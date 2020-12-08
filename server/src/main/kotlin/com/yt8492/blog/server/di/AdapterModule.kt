@@ -4,6 +4,7 @@ import com.yt8492.blog.server.AppConfig
 import com.yt8492.blog.server.adapter.controller.EntryController
 import com.yt8492.blog.server.adapter.controller.UserController
 import com.yt8492.blog.server.adapter.db.DBHelper
+import com.yt8492.blog.server.adapter.jwt.UserJWTService
 import org.koin.dsl.module
 
 val adapterModule = module {
