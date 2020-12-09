@@ -6,6 +6,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import react.*
+import react.dom.a
 import react.dom.div
 
 val entriesPage = functionalComponent<EntriesProps> { props ->
@@ -20,7 +21,9 @@ val entriesPage = functionalComponent<EntriesProps> { props ->
     }
     state.forEach { entry ->
         div {
-            + entry.title
+            a(href = "#/entries/${entry.id.value}") {
+                + entry.title
+            }
         }
     }
 }
