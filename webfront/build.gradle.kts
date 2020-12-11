@@ -18,6 +18,8 @@ dependencies {
     implementation("org.jetbrains:kotlin-react:17.0.0-pre.129-kotlin-1.4.21")
     implementation("org.jetbrains:kotlin-react-dom:17.0.0-pre.129-kotlin-1.4.21")
     implementation("org.jetbrains:kotlin-react-router-dom:5.2.0-pre.129-kotlin-1.4.21")
+    implementation("org.jetbrains:kotlin-css:1.0.0-pre.131-kotlin-1.4.21")
+    implementation("org.jetbrains:kotlin-styled:5.2.0-pre.130-kotlin-1.4.21")
     implementation("org.jetbrains:markdown-js:0.2.0.pre-55")
     implementation("io.ktor:ktor-client-js:1.4.1")
     implementation("io.ktor:ktor-client-serialization:1.4.1")
@@ -29,11 +31,13 @@ kotlin {
             webpackTask {
                 cssSupport.enabled = true
                 outputFileName = "main.js"
+                cssSupport.enabled = true
             }
 
             runTask {
                 cssSupport.enabled = true
                 outputFileName = "main.js"
+                cssSupport.enabled = true
             }
         }
         binaries.executable()
