@@ -5,9 +5,14 @@ import com.yt8492.blog.common.model.Entry
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlinx.css.Display
+import kotlinx.css.FlexDirection
+import kotlinx.css.display
+import kotlinx.css.flexDirection
 import react.*
-import react.dom.a
-import react.dom.div
+import styled.css
+import styled.styledDiv
+import ui.component.entryRow
 
 val entriesPage = functionalComponent<EntriesProps> { props ->
     val (state, setState) = useState(listOf<Entry>())
@@ -19,11 +24,14 @@ val entriesPage = functionalComponent<EntriesProps> { props ->
             }
         }
     }
-    state.forEach { entry ->
-        div {
-            a(href = "#/entries/${entry.id.value}") {
-                + entry.title
-            }
+    styledDiv {
+        state.forEach { entry ->
+            entryRow(entry)
+        }
+
+        css {
+            display = Display.flex
+            flexDirection = FlexDirection.column
         }
     }
 }

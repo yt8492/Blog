@@ -23,6 +23,7 @@ dependencies {
     implementation("org.jetbrains:markdown-js:0.2.0.pre-55")
     implementation("io.ktor:ktor-client-js:1.4.1")
     implementation("io.ktor:ktor-client-serialization:1.4.1")
+    implementation("com.soywiz.korlibs.klock:klock:2.0.0-alpha")
 }
 
 kotlin {

@@ -1,8 +1,7 @@
 package ui.page
 
 import io.ktor.http.*
-import kotlinx.css.padding
-import kotlinx.css.px
+import kotlinx.css.*
 import react.RBuilder
 import react.RProps
 import react.child
@@ -14,31 +13,39 @@ import styled.styledDiv
 import ui.component.blogTitle
 
 fun RBuilder.rootPage() {
-    blogTitle()
     styledDiv {
-        hashRouter {
-            switch {
-                route("/", exact = true) {
-                    child(entriesPage) {
-                        attrs.page = 1
+        blogTitle()
+        styledDiv {
+            hashRouter {
+                switch {
+                    route("/", exact = true) {
+                        child(entriesPage) {
+                            attrs.page = 1
+                        }
+                    }
+                    route<RProps>("/entries", exact = true) { props ->
+                        child(entriesPage) {
+                            attrs.page = parseQueryString(props.location.search)["page"]
+                                ?.toIntOrNull() ?: 1
+                        }
+                    }
+                    route<EntryProps>("/entries/:id", exact = true) { props ->
+                        child(entryPage) {
+                            attrs.id = props.match.params.id
+                        }
                     }
                 }
-                route<RProps>("/entries", exact = true) { props ->
-                    child(entriesPage) {
-                        attrs.page = parseQueryString(props.location.search)["page"]
-                            ?.toIntOrNull() ?: 1
-                    }
-                }
-                route<EntryProps>("/entries/:id", exact = true) { props ->
-                    child(entryPage) {
-                        attrs.id = props.match.params.id
-                    }
-                }
+            }
+
+            css {
+                width = 90.pct
+                maxWidth = 1000.px
+                margin(LinearDimension.auto)
             }
         }
 
         css {
-            padding(32.px)
+            fontSize = 16.px
         }
     }
 }
