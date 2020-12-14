@@ -9,7 +9,7 @@ import styled.styledHeader
 
 fun RBuilder.blogTitle() {
     styledHeader {
-        styledA(href = "/") {
+        styledA(href = "#/") {
             + """Log.d("yt8492", blog)"""
 
             css {
