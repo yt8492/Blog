@@ -110,3 +110,6 @@ fabric.properties
 /docker/mysql/data
 build/
 .gradle/
+**/.DS_Store
+/server/generated
+
