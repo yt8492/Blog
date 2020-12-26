@@ -20,18 +20,17 @@ object Api : CoroutineScope by MainScope() {
             serializer = KotlinxSerializer()
         }
         defaultRequest {
-            host = "localhost"
             port = 8080
         }
     }
 
     suspend fun getPublicEntries(page: Int): List<Entry> {
-        return client.get<List<EntryResponseJson>>("/entries?page=$page")
+        return client.get<List<EntryResponseJson>>("/api/entries?page=$page")
             .map { it.toModel() }
     }
 
     suspend fun getEntryById(id: EntryId): Entry? {
-        return client.get<EntryResponseJson>("/entries/${id.value}")
+        return client.get<EntryResponseJson>("/api/entries/${id.value}")
             .toModel()
     }
 }

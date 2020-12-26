@@ -5,8 +5,10 @@ import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.borderBottom
 import react.RBuilder
+import react.rClass
+import react.router.dom.LinkComponent
 import styled.css
-import styled.styledA
+import styled.styled
 import styled.styledDiv
 
 fun RBuilder.entryRow(entry: Entry) {
@@ -26,8 +28,9 @@ fun RBuilder.entryRow(entry: Entry) {
         }
 
         styledDiv {
-            styledA("#/entries/${entry.id.value}") {
+            styled(LinkComponent::class.rClass)() {
                 + "記事を読む"
+                attrs.to = "/entries/${entry.id.value}"
 
                 css {
                     fontSize = 16.px

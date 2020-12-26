@@ -5,7 +5,7 @@ import kotlinx.css.*
 import react.RBuilder
 import react.RProps
 import react.child
-import react.router.dom.hashRouter
+import react.router.dom.browserRouter
 import react.router.dom.route
 import react.router.dom.switch
 import styled.css
@@ -14,9 +14,9 @@ import ui.component.blogTitle
 
 fun RBuilder.rootPage() {
     styledDiv {
-        blogTitle()
-        styledDiv {
-            hashRouter {
+        browserRouter {
+            blogTitle()
+            styledDiv {
                 switch {
                     route("/", exact = true) {
                         child(entriesPage) {
@@ -35,12 +35,12 @@ fun RBuilder.rootPage() {
                         }
                     }
                 }
-            }
 
-            css {
-                width = 90.pct
-                maxWidth = 1000.px
-                margin(LinearDimension.auto)
+                css {
+                    width = 90.pct
+                    maxWidth = 1000.px
+                    margin(LinearDimension.auto)
+                }
             }
         }
 
