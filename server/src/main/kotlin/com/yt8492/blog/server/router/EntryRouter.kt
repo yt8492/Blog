@@ -1,9 +1,11 @@
-package com.yt8492.blog.server
+package com.yt8492.blog.server.router
 
 import com.yt8492.blog.server.adapter.controller.EntryController
 import com.yt8492.blog.common.json.CreateEntryRequestJson
 import com.yt8492.blog.common.json.EditEntryRequestJson
-import com.yt8492.blog.common.json.MessageJson
+import com.yt8492.blog.server.getIntQueryParameterOrRespondBadRequest
+import com.yt8492.blog.server.getStringPathParameterOrRespondBadRequest
+import com.yt8492.blog.server.respondResult
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.http.*
@@ -51,32 +53,4 @@ fun Route.entryRouter(controller: EntryController) {
             }
         }
     }
-}
-
-private suspend fun PipelineContext<Unit, ApplicationCall>.getIntQueryParameterOrRespondBadRequest(
-    name: String
-): Int? {
-    val result = call.request.queryParameters[name]?.toIntOrNull()
-    if (result == null) {
-        call.respond(
-            HttpStatusCode.BadRequest,
-            MessageJson("query parameter $name (type: integer) is required")
-        )
-        return null
-    }
-    return result
-}
-
-private suspend fun PipelineContext<Unit, ApplicationCall>.getStringPathParameterOrRespondBadRequest(
-    name: String
-): String? {
-    val result = call.parameters[name]
-    if (result == null) {
-        call.respond(
-            HttpStatusCode.BadRequest,
-            MessageJson("path parameter $name (type: string) is required")
-        )
-        return null
-    }
-    return result
 }

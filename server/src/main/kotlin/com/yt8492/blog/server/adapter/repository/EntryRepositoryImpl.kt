@@ -6,11 +6,13 @@ import com.yt8492.blog.server.adapter.db.converter.toModel
 import com.yt8492.blog.server.adapter.db.dao.EntryDao
 import com.yt8492.blog.server.adapter.db.dao.TagDao
 import com.yt8492.blog.server.adapter.db.table.EntryTable
+import com.yt8492.blog.server.adapter.db.table.EntryTagTable
 import com.yt8492.blog.server.adapter.db.table.TagTable
 import com.yt8492.blog.server.domain.repository.EntryRepository
 import com.yt8492.blog.server.util.toLocalDateTime
-import org.jetbrains.exposed.sql.SizedCollection
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.sql.SQLException
 
 class EntryRepositoryImpl : EntryRepository {
     override suspend fun findById(id: EntryId): Entry? {
@@ -39,34 +41,56 @@ class EntryRepositoryImpl : EntryRepository {
                 isPreview = entry.isPreview
                 createdAt = entry.createdAt.toLocalDateTime()
                 updatedAt = entry.updatedAt.toLocalDateTime()
-                tags = SizedCollection(existTags + notExistTags)
+            }.also {
+                EntryTagTable.batchInsert(existTags + notExistTags, ignore = true) {
+                    this[EntryTagTable.entryId] = entry.id.value
+                    this[EntryTagTable.tagId] = it.id.value
+                }
             }.toModel()
         }
     }
 
     override suspend fun update(entry: Entry): Entry {
         transaction {
-            val dao = EntryDao.findById(entry.id.value)
+            val existEntry = EntryDao.findById(entry.id.value) ?: return@transaction
             val existTags = TagDao.find { TagTable.name inList entry.tags }
             val notExistTags = (entry.tags - existTags.map { it.name }).map {
                 TagDao.new { name = it }
             }
-            dao?.apply {
+            val deletedTags = existEntry.tags - existTags
+            EntryTagTable.deleteWhere {
+                EntryTagTable.entryId eq entry.id.value and
+                    (EntryTagTable.tagId inList deletedTags.map { it.id })
+            }
+            existEntry.apply {
                 title = entry.title
                 content = entry.content
-                tags = SizedCollection(existTags + notExistTags)
                 isPreview = entry.isPreview
                 createdAt = entry.createdAt.toLocalDateTime()
                 updatedAt = entry.updatedAt.toLocalDateTime()
+            }.also {
+                val shouldInsertTags = (existTags + notExistTags).filter { !existEntry.tags.contains(it) }
+                EntryTagTable.batchInsert(shouldInsertTags) {
+                    this[EntryTagTable.entryId] = entry.id.value
+                    this[EntryTagTable.tagId] = it.id.value
+                }
             }
         }
         return entry
     }
 
-    override suspend fun delete(id: EntryId):Boolean {
+    override suspend fun delete(id: EntryId): Boolean {
         return transaction {
-            EntryDao.findById(id.value)
-                ?.delete()
-        } != null
+            try {
+                EntryTagTable.deleteWhere {
+                    EntryTagTable.entryId eq id.value
+                }
+                EntryTable.deleteWhere {
+                    EntryTable.id eq id.value
+                } > 0
+            } catch (e: SQLException) {
+                false
+            }
+        }
     }
 }

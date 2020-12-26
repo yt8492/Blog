@@ -19,9 +19,4 @@ class AuthServiceImpl(
         val jwt = userJWTService.createUserIdJWT(user.id)
         return AuthToken(jwt)
     }
-
-    companion object {
-        private const val SUBJECT = "AuthToken"
-        private const val USER_ID_CLAIM = "userId"
-    }
 }

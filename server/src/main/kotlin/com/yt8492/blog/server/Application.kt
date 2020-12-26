@@ -9,7 +9,11 @@ import com.yt8492.blog.server.di.adapterModule
 import com.yt8492.blog.server.di.domainModule
 import com.yt8492.blog.server.di.mainModule
 import com.yt8492.blog.server.di.useCaseModule
+import com.yt8492.blog.server.domain.repository.EntryRepository
 import com.yt8492.blog.server.domain.repository.UserRepository
+import com.yt8492.blog.server.router.entryRouter
+import com.yt8492.blog.server.router.userRouter
+import com.yt8492.blog.server.router.viewRouter
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
@@ -20,7 +24,6 @@ import io.ktor.http.*
 import io.ktor.auth.*
 import io.ktor.auth.jwt.*
 import io.ktor.serialization.*
-import org.koin.experimental.property.inject
 import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.inject
 
@@ -77,9 +80,13 @@ fun Application.module(testing: Boolean = false) {
 
     val entryController: EntryController by inject()
     val userController: UserController by inject()
+    val entryRepository: EntryRepository by inject()
 
     routing {
-        entryRouter(entryController)
-        userRouter(userController)
+        route("/api") {
+            entryRouter(entryController)
+            userRouter(userController)
+        }
+        viewRouter(entryRepository)
     }
 }
