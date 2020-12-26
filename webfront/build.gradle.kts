@@ -44,21 +44,3 @@ kotlin {
         binaries.executable()
     }
 }
-
-val browserWebpack = tasks.getByName("browserProductionWebpack")
-
-val copyDistributions by tasks.registering {
-    doLast {
-        copy {
-            val destinationDir = File("${rootProject.rootDir}/server/generated")
-            if (!destinationDir.exists()) {
-                destinationDir.mkdir()
-            }
-            val distributions = File("$buildDir/distributions/")
-            from(distributions)
-            into(destinationDir)
-        }
-    }
-}
-
-browserWebpack.finalizedBy(copyDistributions)

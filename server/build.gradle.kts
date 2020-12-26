@@ -18,6 +18,18 @@ tasks {
     withType<Test> {
         useJUnitPlatform()
     }
+    withType<Sync> {
+        dependsOn(":webfront:browserProductionWebpack")
+        into("generated") {
+            from("${rootProject.project(":webfront").buildDir}/distributions")
+        }
+    }
+    withType<Zip> {
+        dependsOn(":webfront:browserProductionWebpack")
+        into("generated") {
+            from("${rootProject.project(":webfront").buildDir}/distributions")
+        }
+    }
 }
 
 repositories {
