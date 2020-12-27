@@ -10,17 +10,17 @@ import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
+import io.ktor.http.*
 
-object Api : CoroutineScope by MainScope() {
+object Api {
 
     private val client = HttpClient(Js) {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
         defaultRequest {
-            port = 8080
+            url.protocol = URLProtocol.HTTPS
+            url.host = "blog.yt8492.com"
         }
     }
 
