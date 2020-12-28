@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.system.module.type="sourceSet" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../../cli/build/classes/kotlin/mingwX64/main" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../cli/src/mingwX64Main" />
+    <orderEntry type="jdk" jdkName="Kotlin SDK" jdkType="KotlinSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Kotlin/Native 1.4.21 - stdlib" level="project" />
+    <orderEntry type="module" module-name="Blog.cli.commonMain" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.21" level="project" />
+  </component>
+</module>

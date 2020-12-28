@@ -2,7 +2,6 @@ package ui.component
 
 import com.yt8492.blog.common.model.Entry
 import kotlinx.css.*
-import org.intellij.markdown.html.urlEncode
 import react.RBuilder
 import styled.css
 import styled.styledDiv
@@ -11,11 +10,11 @@ fun RBuilder.shareSection(entry: Entry? = null) {
     val (text, url) = if (entry != null) {
         val title = """${entry.title} - Log.d("yt8492", blog)"""
         val url = "https://blog.yt8492.com/entries/${entry.id.value}"
-        urlEncode(title) to urlEncode(url)
+        encodeURIComponent(title) to encodeURIComponent(url)
     } else {
         val title = """Log.d("yt8492", blog)"""
         val url = "https://blog.yt8492.com/"
-        urlEncode(title) to urlEncode(url)
+        encodeURIComponent(title) to encodeURIComponent(url)
     }
     val twitterHref = "https://twitter.com/intent/tweet?text=$text&url=$url"
     val facebookHref = "https://www.facebook.com/sharer/sharer.php?u=$url"
@@ -32,3 +31,5 @@ fun RBuilder.shareSection(entry: Entry? = null) {
         }
     }
 }
+
+external fun encodeURIComponent(str: String): String

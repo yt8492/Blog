@@ -20,10 +20,11 @@ dependencies {
     implementation("org.jetbrains:kotlin-react-router-dom:5.2.0-pre.129-kotlin-1.4.21")
     implementation("org.jetbrains:kotlin-css:1.0.0-pre.131-kotlin-1.4.21")
     implementation("org.jetbrains:kotlin-styled:5.2.0-pre.130-kotlin-1.4.21")
-    implementation("org.jetbrains:markdown-js:0.2.0.pre-55")
     implementation("io.ktor:ktor-client-js:1.4.1")
     implementation("io.ktor:ktor-client-serialization:1.4.1")
     implementation("com.soywiz.korlibs.klock:klock:2.0.0-alpha")
+    implementation(npm("react-markdown", "5.0.3"))
+    implementation(npm("remark-gfm", "1.0.0"))
 }
 
 kotlin {
