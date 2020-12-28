@@ -10,7 +10,7 @@ import styled.styledDiv
 fun RBuilder.shareSection(entry: Entry? = null) {
     val (text, url) = if (entry != null) {
         val title = """${entry.title} - Log.d("yt8492", blog)"""
-        val url = "https://blog.yt8492.com/#/entries/${entry.id.value}"
+        val url = "https://blog.yt8492.com/entries/${entry.id.value}"
         urlEncode(title) to urlEncode(url)
     } else {
         val title = """Log.d("yt8492", blog)"""
