@@ -6,7 +6,7 @@ import react.child
 import react.functionalComponent
 import reactsyntaxhighlighter.Prism
 
-interface PrismRenderProps : RProps {
+external interface PrismRenderProps : RProps {
     var language: String
     var value: String
 }

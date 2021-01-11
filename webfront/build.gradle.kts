@@ -29,18 +29,16 @@ dependencies {
 }
 
 kotlin {
-    js {
+    js(IR) {
         browser {
             webpackTask {
                 cssSupport.enabled = true
                 outputFileName = "main.js"
-                cssSupport.enabled = true
             }
 
             runTask {
                 cssSupport.enabled = true
                 outputFileName = "main.js"
-                cssSupport.enabled = true
             }
         }
         binaries.executable()

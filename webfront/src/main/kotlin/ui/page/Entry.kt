@@ -52,6 +52,6 @@ val entryPage = functionalComponent<EntryProps> { props ->
     }
 }
 
-interface EntryProps : RProps {
+external interface EntryProps : RProps {
     var id: String
 }

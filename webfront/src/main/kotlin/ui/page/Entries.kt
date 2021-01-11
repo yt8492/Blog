@@ -35,6 +35,6 @@ val entriesPage = functionalComponent<EntriesProps> { props ->
     }
 }
 
-interface EntriesProps : RProps {
+external interface EntriesProps : RProps {
     var page: Int
 }
