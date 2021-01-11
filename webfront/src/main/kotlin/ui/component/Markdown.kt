@@ -1,18 +1,19 @@
 package ui.component
 
 import kotlinx.css.*
-import kotlinx.css.properties.LineHeight
 import kotlinx.css.properties.border
 import kotlinx.css.properties.borderTop
-import lib.gfm
-import lib.reactMarkdown
+import lib.reactmarkdown.gfm
+import lib.reactmarkdown.reactMarkdown
+import lib.reactsyntaxhaighlighter.prismRender
 import react.RBuilder
 import styled.css
 import styled.styledDiv
+import kotlin.js.json
 
 fun RBuilder.markdown(src: String) {
     styledDiv {
-        reactMarkdown(src, listOf(gfm), true)
+        reactMarkdown(src, listOf(gfm), true, json("code" to prismRender))
 
         css {
             padding(10.px, 30.px, 10.px)
@@ -49,6 +50,25 @@ fun RBuilder.markdown(src: String) {
             }
             child("table tr th :last-child, table tr td :last-child") {
                 marginBottom = 0.px
+            }
+            child("code") {
+                padding(0.2.em, 0.4.em)
+                margin(0.px)
+                fontSize = 85.pct
+                backgroundColor = Color("rgba(27,31,35,.05)")
+            }
+            child("pre") {
+                wordWrap = WordWrap.normal
+            }
+            child("pre>code") {
+                padding(0.px)
+                margin(0.px)
+                fontSize = 100.pct
+                wordBreak = WordBreak.normal
+                whiteSpace = WhiteSpace.pre
+                backgroundColor = Color.transparent
+                borderWidth = 0.px
+
             }
         }
     }

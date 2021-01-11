@@ -25,6 +25,7 @@ dependencies {
     implementation("com.soywiz.korlibs.klock:klock:2.0.0-alpha")
     implementation(npm("react-markdown", "5.0.3"))
     implementation(npm("remark-gfm", "1.0.0"))
+    implementation(npm("react-syntax-highlighter", "15.4.3"))
 }
 
 kotlin {
