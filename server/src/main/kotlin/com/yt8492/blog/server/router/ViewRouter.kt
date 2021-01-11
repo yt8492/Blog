@@ -18,6 +18,7 @@ fun Route.viewRouter(entryRepository: EntryRepository) {
         }
         static {
             files("generated")
+            file("favicon.ico", "generated/favicon.ico")
         }
     }
     route("/entries") {
@@ -27,6 +28,7 @@ fun Route.viewRouter(entryRepository: EntryRepository) {
         static {
             files("generated")
             file("main.js", "generated/main.js")
+            file("favicon.ico", "generated/favicon.ico")
             static("/logo") {
                 files("generated/logo")
             }
@@ -47,6 +49,7 @@ private suspend fun respondEntries(call: ApplicationCall) {
         head {
             meta(charset = "UTF-8")
             title(BLOG_TITLE)
+            link(rel = "icon", type = "image/vnd.microsoft.icon", href = "favicon.ico")
             meta("keywords", "yt8492,マヤミト,ブログ")
         }
         body {
@@ -63,6 +66,7 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
         lang = "ja"
         head {
             meta(charset = "UTF-8")
+            link(rel = "icon", type = "image/vnd.microsoft.icon", href = "favicon.ico")
             if (entry != null) {
                 val keywords = listOf(
                     "yt8492",
@@ -71,6 +75,7 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
                 ) + entry.tags
                 meta("keywords", keywords.joinToString(","))
                 meta("description", entry.title)
+                title("${entry.title} - $BLOG_TITLE")
             }
         }
         body {
