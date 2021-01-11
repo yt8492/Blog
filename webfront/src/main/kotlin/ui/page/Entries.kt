@@ -24,7 +24,7 @@ val entriesPage = functionalComponent<EntriesProps> { props ->
         }
     }
     styledDiv {
-        state.forEach { entry ->
+        state.reversed().forEach { entry ->
             entryRow(entry)
         }
 
