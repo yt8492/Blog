@@ -46,6 +46,7 @@ fun RBuilder.rootPage() {
 
         css {
             fontSize = 16.px
+            fontFamily = "\"Hiragino Kaku Gothic ProN\", \"Meiryo\", sans-serif"
         }
     }
 }
