@@ -1,6 +1,7 @@
 package ui.page
 
 import api.Api
+import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
 import kotlinx.browser.document
@@ -25,7 +26,7 @@ val entryPage = functionalComponent<EntryProps> { props ->
         MainScope().launch {
             Api.getEntryById(id)?.let {
                 setEntry(it)
-                document.title = """${it.title} - Log.d("yt8492", blog)"""
+                document.title = """${it.title} - ${Constants.BLOG_TITLE}"""
             }
         }
     }

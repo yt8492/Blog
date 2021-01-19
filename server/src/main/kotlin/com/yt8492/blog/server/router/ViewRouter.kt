@@ -1,5 +1,6 @@
 package com.yt8492.blog.server.router
 
+import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
 import com.yt8492.blog.server.domain.repository.EntryRepository
@@ -48,7 +49,7 @@ private suspend fun respondEntries(call: ApplicationCall) {
         lang = "ja"
         head {
             meta(charset = "UTF-8")
-            title(BLOG_TITLE)
+            title(Constants.BLOG_TITLE)
             link(rel = "icon", type = "image/vnd.microsoft.icon", href = "favicon.ico")
             meta("keywords", "yt8492,マヤミト,ブログ")
         }
@@ -75,7 +76,7 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
                 ) + entry.tags
                 meta("keywords", keywords.joinToString(","))
                 meta("description", entry.title)
-                title("${entry.title} - $BLOG_TITLE")
+                title("${entry.title} - ${Constants.BLOG_TITLE}")
             }
         }
         body {
@@ -86,5 +87,3 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
         }
     }
 }
-
-private const val BLOG_TITLE = """Log.d("yt8492", blog)"""

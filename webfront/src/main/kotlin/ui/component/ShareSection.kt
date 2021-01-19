@@ -1,5 +1,6 @@
 package ui.component
 
+import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
 import kotlinx.css.*
 import react.RBuilder
@@ -8,11 +9,11 @@ import styled.styledDiv
 
 fun RBuilder.shareSection(entry: Entry? = null) {
     val (text, url) = if (entry != null) {
-        val title = """${entry.title} - Log.d("yt8492", blog)"""
+        val title = """${entry.title} - ${Constants.BLOG_TITLE}"""
         val url = "https://blog.yt8492.com/entries/${entry.id.value}"
         encodeURIComponent(title) to encodeURIComponent(url)
     } else {
-        val title = """Log.d("yt8492", blog)"""
+        val title = Constants.BLOG_TITLE
         val url = "https://blog.yt8492.com/"
         encodeURIComponent(title) to encodeURIComponent(url)
     }

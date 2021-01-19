@@ -1,5 +1,6 @@
 package ui.component
 
+import com.yt8492.blog.common.Constants
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import react.RBuilder
@@ -12,7 +13,7 @@ import styled.styledHeader
 fun RBuilder.blogTitle() {
     styledHeader {
         styled(LinkComponent::class.rClass)() {
-            + """Log.d("yt8492", blog)"""
+            + Constants.BLOG_TITLE
             attrs.to = "/"
             css {
                 color = Color.black
