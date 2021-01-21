@@ -83,9 +83,16 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
                     "マヤミト",
                     "ブログ"
                 ) + entry.tags
-                meta("keywords", keywords.joinToString(","))
-                meta("description", entry.title)
+                meta(name = "keywords", keywords.joinToString(","))
+                meta(name = "description", entry.title)
                 title("${entry.title} - ${Constants.BLOG_TITLE}")
+                meta(property = "og:title", content = entry.title)
+                meta(property = "og:type", content = "article")
+                meta(property = "og:description", content = entry.content.take(140))
+                meta(property = "og:url", content = "https://blog.yt8492.com/entries/${entry.id.value}")
+                meta(property = "og:site_name", content = Constants.BLOG_TITLE)
+                meta(property = "og:image", content = "https://blog.yt8492.com/entries/${entry.id.value}/ogp")
+                meta(name = "twitter.card", content = "summary_large_image")
             }
         }
         body {
@@ -94,5 +101,13 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
             }
             script(src = "main.js", block = {})
         }
+    }
+}
+
+@HtmlTagMarker
+private fun FlowOrPhrasingOrMetaDataContent .meta(property: String, content: String) {
+    meta {
+        attributes["property"] = property
+        this.content = content
     }
 }
