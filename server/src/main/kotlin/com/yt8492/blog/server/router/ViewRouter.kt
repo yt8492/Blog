@@ -3,10 +3,12 @@ package com.yt8492.blog.server.router
 import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
+import com.yt8492.blog.server.OGPService
 import com.yt8492.blog.server.domain.repository.EntryRepository
 import com.yt8492.blog.server.getStringPathParameterOrRespondBadRequest
 import io.ktor.application.*
 import io.ktor.html.*
+import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -40,6 +42,13 @@ fun Route.viewRouter(entryRepository: EntryRepository) {
             val entryId = getStringPathParameterOrRespondBadRequest("id") ?: return@get
             val entry = entryRepository.findById(EntryId(entryId))
             respondEntry(call, entry)
+        }
+        get("/ogp") {
+            val entryId = getStringPathParameterOrRespondBadRequest("id") ?: return@get
+            val entry = entryRepository.findById(EntryId(entryId)) ?: return@get
+            val bytes = OGPService.createImageByteArray(entry)
+            call.response.headers.append(HttpHeaders.CacheControl, "max-age=3600")
+            call.respondBytes(bytes, ContentType.defaultForFileExtension("png"))
         }
     }
 }
