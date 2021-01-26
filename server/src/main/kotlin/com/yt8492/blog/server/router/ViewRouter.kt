@@ -92,7 +92,7 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
                 meta(property = "og:url", content = "https://blog.yt8492.com/entries/${entry.id.value}")
                 meta(property = "og:site_name", content = Constants.BLOG_TITLE)
                 meta(property = "og:image", content = "https://blog.yt8492.com/entries/${entry.id.value}/ogp")
-                meta(name = "twitter.card", content = "summary_large_image")
+                meta(name = "twitter:card", content = "summary_large_image")
             }
         }
         body {

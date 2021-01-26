@@ -29,7 +29,8 @@ object OGPService {
         graphics2D.color = Color(0x16, 0x21, 0x2C)
         graphics2D.fillRect(0, 0, OGP_WIDTH, OGP_HEIGHT)
         graphics2D.color = Color.WHITE
-        val font = Font(Font.SANS_SERIF, Font.PLAIN, 40)
+        val fileStream = Thread.currentThread().contextClassLoader.getResourceAsStream("NotoSansJP-Regular.otf")
+        val font = Font.createFont(Font.TRUETYPE_FONT, fileStream).deriveFont(40f)
         graphics2D.font = font
         val fontMetrics = graphics2D.fontMetrics
         val fontHeight = fontMetrics.height
