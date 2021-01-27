@@ -22,6 +22,7 @@ fun Route.viewRouter(entryRepository: EntryRepository) {
         static {
             files("generated")
             file("favicon.ico", "generated/favicon.ico")
+            resource("TopOGP.png")
         }
     }
     route("/entries") {
@@ -61,6 +62,13 @@ private suspend fun respondEntries(call: ApplicationCall) {
             title(Constants.BLOG_TITLE)
             link(rel = "icon", type = "image/vnd.microsoft.icon", href = "favicon.ico")
             meta("keywords", "yt8492,マヤミト,ブログ")
+            meta(property = "og:title", content = """Log.d("yt8492", blog)""")
+            meta(property = "og:type", content = "article")
+            meta(property = "og:description", content = "マヤミトのブログ")
+            meta(property = "og:url", content = "https://blog.yt8492.com")
+            meta(property = "og:site_name", content = Constants.BLOG_TITLE)
+            meta(property = "og:image", content = "https://blog.yt8492.com/TopOGP.png")
+            meta(name = "twitter:card", content = "summary")
         }
         body {
             div {
