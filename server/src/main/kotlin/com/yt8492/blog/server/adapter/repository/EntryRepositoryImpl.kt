@@ -24,6 +24,7 @@ class EntryRepositoryImpl : EntryRepository {
     override suspend fun findAllPublic(page: Int): List<Entry> {
         return transaction {
             EntryDao.find { EntryTable.isPreview eq false }
+                .orderBy(EntryTable.createdAt to SortOrder.ASC)
                 .limit(10, (page - 1) * 10L)
                 .map(EntryDao::toModel)
         }
