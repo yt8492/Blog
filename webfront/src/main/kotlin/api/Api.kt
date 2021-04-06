@@ -14,13 +14,14 @@ import io.ktor.http.*
 
 object Api {
 
+    private val baseUrl = js("BLOG_BASE_URL") as String
+
     private val client = HttpClient(Js) {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
         defaultRequest {
-            url.protocol = URLProtocol.HTTPS
-            url.host = "blog.yt8492.com"
+            url.takeFrom(baseUrl)
         }
     }
 
