@@ -113,7 +113,7 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
 }
 
 @HtmlTagMarker
-private fun FlowOrPhrasingOrMetaDataContent .meta(property: String, content: String) {
+private fun FlowOrMetaDataOrPhrasingContent.meta(property: String, content: String) {
     meta {
         attributes["property"] = property
         this.content = content
