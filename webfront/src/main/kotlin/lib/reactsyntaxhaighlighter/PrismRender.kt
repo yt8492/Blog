@@ -12,7 +12,7 @@ external interface PrismRenderProps : RProps {
 }
 
 val prismRender = functionalComponent<PrismRenderProps> { props ->
-    child(::Prism) {
+    child(Prism) {
         + props.value
         attrs.language = props.language
         attrs.style = darcula

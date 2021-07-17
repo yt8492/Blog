@@ -46,5 +46,15 @@
       <option name="name" value="maven" />
       <option name="url" value="https://dl.bintray.com/jetbrains/markdown" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core-js" />
+    </remote-repository>
   </component>
 </project>

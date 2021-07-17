@@ -12,7 +12,7 @@ import styled.styledHeader
 
 fun RBuilder.blogTitle() {
     styledHeader {
-        styled(LinkComponent::class.rClass)() {
+        styled(LinkComponent)() {
             + Constants.BLOG_TITLE
             attrs.to = "/"
             css {

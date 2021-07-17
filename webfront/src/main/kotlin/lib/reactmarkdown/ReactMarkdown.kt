@@ -1,13 +1,10 @@
 package lib.reactmarkdown
 
-import react.RBuilder
-import react.RProps
-import react.ReactElement
-import react.child
+import react.*
 
 @JsModule("react-markdown")
 @JsNonModule
-internal external fun ReactMarkdown(props: ReactMarkdownProps): ReactElement
+internal external object ReactMarkdown : FunctionComponent<ReactMarkdownProps>
 
 @JsModule("remark-gfm")
 @JsNonModule
@@ -26,7 +23,7 @@ fun RBuilder.reactMarkdown(
     allowDangerousHtml: Boolean = false,
     renderers: dynamic = null
 ) {
-    child(::ReactMarkdown) {
+    child(ReactMarkdown) {
         attrs.children = children
         attrs.plugins = plugins.toTypedArray()
         attrs.allowDangerousHtml = allowDangerousHtml

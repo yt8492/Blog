@@ -24,9 +24,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
-                implementation("com.soywiz.korlibs.krypto:krypto:2.0.0-alpha")
-                implementation("com.soywiz.korlibs.klock:klock:2.0.0-alpha")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+                implementation("com.soywiz.korlibs.krypto:krypto:2.2.0")
+                implementation("com.soywiz.korlibs.klock:klock:2.2.0")
             }
         }
         all {

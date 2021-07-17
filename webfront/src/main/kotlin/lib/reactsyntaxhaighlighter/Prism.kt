@@ -2,10 +2,11 @@
 @file:JsNonModule
 package reactsyntaxhighlighter
 
+import react.FunctionComponent
 import react.RProps
 import react.ReactElement
 
-external fun Prism(props: PrismProps): ReactElement
+external object Prism : FunctionComponent<PrismProps>
 
 external interface PrismProps : RProps {
     var language: String

@@ -28,7 +28,7 @@ fun RBuilder.entryRow(entry: Entry) {
         }
 
         styledDiv {
-            styled(LinkComponent::class.rClass)() {
+            styled(LinkComponent)() {
                 + "記事を読む"
                 attrs.to = "/entries/${entry.id.value}"
 
