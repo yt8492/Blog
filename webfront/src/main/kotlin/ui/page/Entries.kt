@@ -17,7 +17,7 @@ import ui.component.entryRow
 
 val entriesPage = functionalComponent<EntriesProps> { props ->
     val (state, setState) = useState(listOf<Entry>())
-    useEffect(listOf(props.page)) {
+    useEffect(props.page) {
         document.title = Constants.BLOG_TITLE
         MainScope().launch {
             val entries = Api.getPublicEntries(props.page)

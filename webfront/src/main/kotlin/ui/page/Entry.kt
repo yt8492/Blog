@@ -22,7 +22,7 @@ import ui.component.*
 val entryPage = functionalComponent<EntryProps> { props ->
     val id = EntryId(props.id)
     val (entry, setEntry) = useState<Entry?>(null)
-    useEffect(listOf(props.id)) {
+    useEffect(props.id) {
         MainScope().launch {
             Api.getEntryById(id)?.let {
                 setEntry(it)
