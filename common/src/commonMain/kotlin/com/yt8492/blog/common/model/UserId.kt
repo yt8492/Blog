@@ -1,3 +1,6 @@
 package com.yt8492.blog.common.model
 
-inline class UserId(val value: String)
+import kotlin.jvm.JvmInline
+
+@JvmInline
+value class UserId(val value: String)

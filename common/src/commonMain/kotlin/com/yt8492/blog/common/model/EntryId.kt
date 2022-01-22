@@ -1,3 +1,6 @@
 package com.yt8492.blog.common.model
 
-inline class EntryId(val value: String)
+import kotlin.jvm.JvmInline
+
+@JvmInline
+value class EntryId(val value: String)

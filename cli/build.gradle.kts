@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
 }
 
 group = "com.yt8492"
@@ -10,7 +11,6 @@ version = "1.0.0"
 repositories {
     mavenCentral()
     maven("https://kotlin.bintray.com/kotlinx")
-    jcenter()
 }
 
 kotlin {
@@ -35,8 +35,8 @@ kotlin {
                 implementation(project(":common"))
                 implementation(kotlin("stdlib-common"))
                 implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.1")
-                implementation("io.ktor:ktor-client-curl:1.4.1")
-                implementation("io.ktor:ktor-client-serialization:1.4.1")
+                implementation("io.ktor:ktor-client-curl:1.5.4")
+                implementation("io.ktor:ktor-client-serialization:1.5.4")
             }
         }
     }
