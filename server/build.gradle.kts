@@ -8,7 +8,7 @@ plugins {
 }
 
 application {
-    mainClassName = "io.ktor.server.netty.EngineMain"
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }
 
 tasks {
@@ -62,6 +62,7 @@ dependencies {
     implementation("org.koin:koin-ktor:2.2.1")
     implementation("com.zaxxer:HikariCP:3.4.5")
     implementation("mysql:mysql-connector-java:8.0.22")
+    implementation("com.google.cloud:google-cloud-datastore:2.1.0")
 
     testImplementation("io.kotest:kotest-runner-junit5:4.3.1")
     testImplementation("io.kotest:kotest-assertions-core:4.3.1")
