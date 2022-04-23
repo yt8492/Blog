@@ -112,4 +112,4 @@ build/
 .gradle/
 **/.DS_Store
 /server/generated
-
+credentials.json

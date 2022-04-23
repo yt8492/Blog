@@ -1,9 +1,9 @@
-FROM yt8492/kotlin-native:1.4.21-gradle6.7.1 as build-stage
+FROM yt8492/kotlin-native:1.5.31-gradle7.0.2 as build-stage
 ADD . /Blog
 WORKDIR /Blog
-RUN gradle :server:installDist
+RUN gradle --no-daemon "-Dorg.gradle.jvmargs=-Xmx4g -XX:MaxRAMPercentage=75.0" :server:installShadowDist
 
 FROM openjdk:8-jre as exec-stage
-COPY --from=build-stage /Blog/server/build/install/server .
+COPY --from=build-stage /Blog/server/build/install/server-shadow .
 
 ENTRYPOINT ["./bin/server"]

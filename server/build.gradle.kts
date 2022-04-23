@@ -59,7 +59,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:0.28.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.28.1")
     implementation("org.jetbrains.exposed:exposed-java-time:0.28.1")
-    implementation("org.koin:koin-ktor:2.2.1")
+    implementation("io.insert-koin:koin-ktor:2.2.3")
     implementation("com.zaxxer:HikariCP:3.4.5")
     implementation("mysql:mysql-connector-java:8.0.22")
     implementation("com.google.cloud:google-cloud-datastore:2.1.0")

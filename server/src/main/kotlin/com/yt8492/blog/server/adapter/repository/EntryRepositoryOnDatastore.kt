@@ -20,7 +20,7 @@ class EntryRepositoryOnDatastore(
 
     override suspend fun findAllPublic(page: Int): List<Entry> {
         val filter = StructuredQuery.PropertyFilter.eq(PROPERTY_IS_PREVIEW, false)
-        val query = Query.newEntityQueryBuilder().setFilter(filter).build()
+        val query = Query.newEntityQueryBuilder().setKind(KIND).setFilter(filter).build()
         return datastore.run(query)
             .asSequence()
             .map { entityToModel(it) }
@@ -54,7 +54,7 @@ class EntryRepositoryOnDatastore(
         val key = newKey(entry.id)
         return Entity.newBuilder(key)
             .set(PROPERTY_TITLE, entry.title)
-            .set(PROPERTY_CONTENT, entry.content)
+            .set(PROPERTY_CONTENT, StringValue.newBuilder(entry.content).setExcludeFromIndexes(true).build())
             .set(PROPERTY_TAGS, entry.tags.map { StringValue(it) })
             .set(PROPERTY_IS_PREVIEW, entry.isPreview)
             .set(PROPERTY_CREATED_AT, Timestamp.of(entry.createdAt.toDate()))

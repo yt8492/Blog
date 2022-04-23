@@ -3,7 +3,6 @@ package com.yt8492.blog.server
 import com.yt8492.blog.common.model.UserId
 import com.yt8492.blog.server.adapter.controller.EntryController
 import com.yt8492.blog.server.adapter.controller.UserController
-import com.yt8492.blog.server.adapter.db.DBHelper
 import com.yt8492.blog.server.adapter.jwt.UserJWTService
 import com.yt8492.blog.server.di.adapterModule
 import com.yt8492.blog.server.di.domainModule
@@ -74,9 +73,6 @@ fun Application.module(testing: Boolean = false) {
             }
         }
     }
-
-    val dbHelper: DBHelper by inject()
-    dbHelper.initDB()
 
     val entryController: EntryController by inject()
     val userController: UserController by inject()

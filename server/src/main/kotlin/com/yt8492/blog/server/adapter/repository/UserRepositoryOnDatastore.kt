@@ -13,11 +13,10 @@ class UserRepositoryOnDatastore(
     private val datastore: Datastore,
 ) : UserRepository {
     override suspend fun findById(id: UserId): User? {
-        val filter = StructuredQuery.PropertyFilter.eq(PROPERTY_ID, id.value)
-        val query = Query.newEntityQueryBuilder().setKind(KIND).setFilter(filter).build()
-        val entity = datastore.run(query).asSequence().firstOrNull() ?: return null
+        val key = datastore.newKeyFactory().setKind(KIND).newKey(id.value)
+        val entity = datastore.get(key) ?: return null
         return User(
-            id = UserId(entity.getString(PROPERTY_ID)),
+            id = id,
             role = Role.valueOf(entity.getString(PROPERTY_ROLE)),
             password = Password.Hashed(entity.getString(PROPERTY_PASSWORD))
         )
@@ -25,7 +24,6 @@ class UserRepositoryOnDatastore(
 
     companion object {
         private const val KIND = "User"
-        private const val PROPERTY_ID = "id"
         private const val PROPERTY_ROLE = "role"
         private const val PROPERTY_PASSWORD = "password"
     }
