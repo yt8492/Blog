@@ -20,7 +20,13 @@ class EntryRepositoryOnDatastore(
 
     override suspend fun findAllPublic(page: Int): List<Entry> {
         val filter = StructuredQuery.PropertyFilter.eq(PROPERTY_IS_PREVIEW, false)
-        val query = Query.newEntityQueryBuilder().setKind(KIND).setFilter(filter).build()
+        val query = Query
+            .newEntityQueryBuilder()
+            .setKind(KIND)
+            .setFilter(filter)
+            .setLimit(10)
+            .setOffset((page - 1) * 10)
+            .build()
         return datastore.run(query)
             .asSequence()
             .map { entityToModel(it) }

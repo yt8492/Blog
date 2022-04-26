@@ -3,7 +3,7 @@ package com.yt8492.blog.server.adapter.db.table
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.`java-time`.datetime
+import org.jetbrains.exposed.sql.javatime.datetime
 import java.time.LocalDateTime
 
 object EntryTable : IdTable<String>("entries") {
