@@ -3,11 +3,13 @@ package ui.component
 import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
 import kotlinx.css.*
-import react.RBuilder
+import react.Props
+import react.fc
 import styled.css
 import styled.styledDiv
 
-fun RBuilder.shareSection(entry: Entry? = null) {
+val shareSection = fc<ShareSectionProps> { props ->
+    val entry = props.entry
     val (text, url) = if (entry != null) {
         val title = """${entry.title} - ${Constants.BLOG_TITLE}"""
         val url = "https://blog.yt8492.com/entries/${entry.id.value}"
@@ -21,9 +23,21 @@ fun RBuilder.shareSection(entry: Entry? = null) {
     val facebookHref = "https://www.facebook.com/sharer/sharer.php?u=$url"
     val hatenaBookmarkHref = "https://b.hatena.ne.jp/entry/panel/?mode=confirm&url=$url&title=$text"
     styledDiv {
-        linkButton(twitterHref, "./logo/twitter-brands.svg", Color("#1b95e0"))
-        linkButton(facebookHref, "./logo/facebook-square-brands.svg", Color("#3b5999"))
-        linkButton(hatenaBookmarkHref, "./logo/hatenabookmark-logomark.svg", Color("#4ba3d9"))
+        linkButton {
+             attrs.url = twitterHref
+             attrs.src = "./logo/twitter-brands.svg"
+             attrs.color = Color("#1b95e0")
+        }
+        linkButton {
+             attrs.url = facebookHref
+             attrs.src = "./logo/facebook-square-brands.svg"
+             attrs.color = Color("#3b5999")
+        }
+        linkButton {
+             attrs.url = hatenaBookmarkHref
+             attrs.src = "./logo/hatenabookmark-logomark.svg"
+             attrs.color = Color("#4ba3d9")
+        }
 
         css {
             display = Display.flex
@@ -31,6 +45,10 @@ fun RBuilder.shareSection(entry: Entry? = null) {
             marginTop = 20.px
         }
     }
+}
+
+external interface ShareSectionProps : Props {
+    var entry: Entry?
 }
 
 external fun encodeURIComponent(str: String): String

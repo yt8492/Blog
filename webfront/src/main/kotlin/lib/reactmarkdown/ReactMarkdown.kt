@@ -4,29 +4,35 @@ import react.*
 
 @JsModule("react-markdown")
 @JsNonModule
-internal external object ReactMarkdown : FunctionComponent<ReactMarkdownProps>
+internal external object ReactMarkdown : FC<_ReactMarkdownProps> {
+    override var displayName: String? = definedExternally
+}
 
 @JsModule("remark-gfm")
 @JsNonModule
 external val gfm: dynamic
 
-external interface ReactMarkdownProps : RProps {
+@JsName("ReactMarkdownProps")
+internal external interface _ReactMarkdownProps : Props {
     var children: String
     var plugins: Array<dynamic>
     var allowDangerousHtml: Boolean
     var renderers: dynamic
 }
 
-fun RBuilder.reactMarkdown(
-    children: String,
-    plugins: List<dynamic> = listOf(),
-    allowDangerousHtml: Boolean = false,
-    renderers: dynamic = null
-) {
-    child(ReactMarkdown) {
-        attrs.children = children
-        attrs.plugins = plugins.toTypedArray()
-        attrs.allowDangerousHtml = allowDangerousHtml
-        attrs.renderers = renderers
+@JsName("_ReactMarkdownProps")
+external interface ReactMarkdownProps : Props {
+    var children: String
+    var plugins: List<dynamic>
+    var allowDangerousHtml: Boolean
+    var renderers: dynamic
+}
+
+val reactMarkdown = fc<ReactMarkdownProps> { props ->
+    ReactMarkdown {
+        attrs.children = props.children
+        attrs.plugins = props.plugins.toTypedArray()
+        attrs.allowDangerousHtml = props.allowDangerousHtml
+        attrs.renderers = props.renderers
     }
 }

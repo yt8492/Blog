@@ -9,20 +9,20 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.css.*
 import kotlinx.css.properties.borderTop
-import react.RProps
-import react.functionalComponent
-import react.useEffect
-import react.useState
+import react.*
+import react.router.useParams
 import styled.css
 import styled.styledArticle
 import styled.styledDiv
 import styled.styledFooter
 import ui.component.*
 
-val entryPage = functionalComponent<EntryProps> { props ->
-    val id = EntryId(props.id)
+val entryPage = fc<Props> {
+    val params = useParams()
+    val rawId = params["id"] ?: return@fc
+    val id = EntryId(rawId)
     val (entry, setEntry) = useState<Entry?>(null)
-    useEffect(props.id) {
+    useEffectOnce {
         MainScope().launch {
             Api.getEntryById(id)?.let {
                 setEntry(it)
@@ -32,13 +32,19 @@ val entryPage = functionalComponent<EntryProps> { props ->
     }
     styledArticle {
         if (entry != null) {
-            entryHeader(entry)
-            markdown(entry.content)
+            entryHeader {
+                attrs.entry = entry
+            }
+            markdown {
+                attrs.src = entry.content
+            }
         }
     }
     styledFooter {
         styledDiv {
-            shareSection(entry)
+            shareSection {
+                attrs.entry = entry
+            }
 
             css {
                 display = Display.flex
@@ -51,8 +57,4 @@ val entryPage = functionalComponent<EntryProps> { props ->
             borderTop(1.px, BorderStyle.solid, Color.lightGray)
         }
     }
-}
-
-external interface EntryProps : RProps {
-    var id: String
 }

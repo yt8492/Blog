@@ -3,16 +3,16 @@ package ui.component
 import com.yt8492.blog.common.Constants
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
-import react.RBuilder
-import react.rClass
-import react.router.dom.LinkComponent
+import react.Props
+import react.fc
+import react.router.dom.Link
 import styled.css
 import styled.styled
 import styled.styledHeader
 
-fun RBuilder.blogTitle() {
+val blogTitle = fc<Props> {
     styledHeader {
-        styled(LinkComponent)() {
+        styled(Link)() {
             + Constants.BLOG_TITLE
             attrs.to = "/"
             css {

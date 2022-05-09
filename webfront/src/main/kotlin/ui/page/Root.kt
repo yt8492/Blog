@@ -1,38 +1,31 @@
 package ui.page
 
-import io.ktor.http.*
 import kotlinx.css.*
-import react.RBuilder
-import react.RProps
-import react.child
-import react.router.dom.browserRouter
-import react.router.dom.route
-import react.router.dom.switch
+import react.*
+import react.router.Route
+import react.router.Routes
+import react.router.dom.BrowserRouter
 import styled.css
 import styled.styledDiv
 import ui.component.blogTitle
 
-fun RBuilder.rootPage() {
-    styledDiv {
-        browserRouter {
+val rootPage = fc<Props> {
+    BrowserRouter {
+        styledDiv {
             blogTitle()
             styledDiv {
-                switch {
-                    route("/", exact = true) {
-                        child(entriesPage) {
-                            attrs.page = 1
-                        }
+                Routes {
+                    Route {
+                        attrs.index = true
+                        attrs.element = entriesPage.create()
                     }
-                    route<RProps>("/entries", exact = true) { props ->
-                        child(entriesPage) {
-                            attrs.page = parseQueryString(props.location.search)["page"]
-                                ?.toIntOrNull() ?: 1
-                        }
+                    Route {
+                        attrs.path = "/entries"
+                        attrs.element = entriesPage.create()
                     }
-                    route<EntryProps>("/entries/:id", exact = true) { props ->
-                        child(entryPage) {
-                            attrs.id = props.match.params.id
-                        }
+                    Route {
+                        attrs.path = "/entries/:id"
+                        attrs.element = entryPage.create()
                     }
                 }
 
@@ -42,11 +35,11 @@ fun RBuilder.rootPage() {
                     margin(LinearDimension.auto)
                 }
             }
-        }
 
-        css {
-            fontSize = 16.px
-            fontFamily = "\"Hiragino Kaku Gothic ProN\", \"Meiryo\", sans-serif"
+            css {
+                fontSize = 16.px
+                fontFamily = "\"Hiragino Kaku Gothic ProN\", \"Meiryo\", sans-serif"
+            }
         }
     }
 }

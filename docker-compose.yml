@@ -17,5 +17,6 @@ services:
     environment:
       AUTH_SECRET: yt8492blog
       BLOG_DOMAIN: blog.yt8492.com
+      GOOGLE_APPLICATION_CREDENTIALS: $PWD/credentials.json
     ports:
       - "8080:8080"

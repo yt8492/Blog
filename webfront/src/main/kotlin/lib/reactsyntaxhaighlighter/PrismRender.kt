@@ -1,18 +1,17 @@
 package lib.reactsyntaxhaighlighter
 
 import lib.reactsyntaxhaighlighter.styles.darcula
-import react.RProps
-import react.child
-import react.functionalComponent
+import react.Props
+import react.fc
 import reactsyntaxhighlighter.Prism
 
-external interface PrismRenderProps : RProps {
+external interface PrismRenderProps : Props {
     var language: String
     var value: String
 }
 
-val prismRender = functionalComponent<PrismRenderProps> { props ->
-    child(Prism) {
+val prismRender = fc<PrismRenderProps> { props ->
+    Prism {
         + props.value
         attrs.language = props.language
         attrs.style = darcula

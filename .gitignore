@@ -113,3 +113,4 @@ build/
 **/.DS_Store
 /server/generated
 credentials.json
+run.sh
