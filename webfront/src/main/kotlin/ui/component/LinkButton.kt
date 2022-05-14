@@ -2,16 +2,17 @@ package ui.component
 
 import kotlinx.css.*
 import kotlinx.css.properties.border
-import react.RBuilder
+import react.Props
+import react.fc
 import styled.css
 import styled.styledA
 import styled.styledImg
 
-fun RBuilder.linkButton(url: String, src: String, color: Color) {
-    styledA(href = url, target = "_blank") {
-        key = url
+val linkButton = fc<LinkButtonProps> { props ->
+    styledA(href = props.url, target = "_blank") {
+        key = props.url
         attrs.rel = "nofollow"
-        styledImg(src = src) {
+        styledImg(src = props.src) {
             css {
                 width = LinearDimension.inherit
             }
@@ -20,7 +21,7 @@ fun RBuilder.linkButton(url: String, src: String, color: Color) {
         css {
             display = Display.flex
             justifyContent = JustifyContent.center
-            this.color = color
+            color = props.color
             width = 24.px
             height = 24.px
             marginLeft = 20.px
@@ -29,4 +30,10 @@ fun RBuilder.linkButton(url: String, src: String, color: Color) {
             border(2.px, BorderStyle.solid, color, 25.pct)
         }
     }
+}
+
+external interface LinkButtonProps : Props {
+    var url: String
+    var src: String
+    var color: Color
 }

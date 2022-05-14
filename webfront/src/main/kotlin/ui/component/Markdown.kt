@@ -6,14 +6,20 @@ import kotlinx.css.properties.borderTop
 import lib.reactmarkdown.gfm
 import lib.reactmarkdown.reactMarkdown
 import lib.reactsyntaxhaighlighter.prismRender
-import react.RBuilder
+import react.Props
+import react.fc
 import styled.css
 import styled.styledDiv
 import kotlin.js.json
 
-fun RBuilder.markdown(src: String) {
+val markdown = fc<MarkdownProps> { props ->
     styledDiv {
-        reactMarkdown(src, listOf(gfm), true, json("code" to prismRender))
+        reactMarkdown {
+            attrs.children = props.src
+            attrs.plugins = listOf(gfm)
+            attrs.allowDangerousHtml = true
+            attrs.renderers = json("code" to prismRender)
+        }
 
         css {
             padding(10.px, 30.px, 10.px)
@@ -72,4 +78,8 @@ fun RBuilder.markdown(src: String) {
             }
         }
     }
+}
+
+external interface MarkdownProps : Props {
+    var src: String
 }

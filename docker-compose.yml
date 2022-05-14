@@ -15,25 +15,8 @@ services:
       dockerfile: Dockerfile
     container_name: "blog-server"
     environment:
-      DB_DRIVER: com.mysql.cj.jdbc.Driver
-      DB_URL: jdbc:mysql://db:3306/blog-db
-      DB_USER: yt8492
-      DB_PASSWORD: password
       AUTH_SECRET: yt8492blog
       BLOG_DOMAIN: blog.yt8492.com
+      GOOGLE_APPLICATION_CREDENTIALS: $PWD/credentials.json
     ports:
       - "8080:8080"
-    depends_on:
-      - db
-  db:
-    image: mysql:8.0.22
-    volumes:
-      - ./docker/mysql/data:/var/lib/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: yt8492
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: blog-db
-    ports:
-      - "3306:3306"

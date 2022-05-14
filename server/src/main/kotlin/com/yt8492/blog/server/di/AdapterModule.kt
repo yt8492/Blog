@@ -1,10 +1,9 @@
 package com.yt8492.blog.server.di
 
-import com.yt8492.blog.server.AppConfig
+import com.google.cloud.datastore.Datastore
+import com.google.cloud.datastore.DatastoreOptions
 import com.yt8492.blog.server.adapter.controller.EntryController
 import com.yt8492.blog.server.adapter.controller.UserController
-import com.yt8492.blog.server.adapter.db.DBHelper
-import com.yt8492.blog.server.adapter.jwt.UserJWTService
 import org.koin.dsl.module
 
 val adapterModule = module {
@@ -22,12 +21,8 @@ val adapterModule = module {
             get()
         )
     }
-    single {
-        DBHelper(
-            AppConfig.dbDriver,
-            AppConfig.dbUrl,
-            AppConfig.dbUser,
-            AppConfig.dbPassword
-        )
+    single<Datastore> {
+        // 環境変数 GOOGLE_APPLICATION_CREDENTIALS に認証情報へのパスを設定する
+        DatastoreOptions.getDefaultInstance().service
     }
 }

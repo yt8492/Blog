@@ -2,13 +2,14 @@
 @file:JsNonModule
 package reactsyntaxhighlighter
 
-import react.FunctionComponent
-import react.RProps
-import react.ReactElement
+import react.FC
+import react.Props
 
-external object Prism : FunctionComponent<PrismProps>
+external object Prism : FC<PrismProps> {
+    override var displayName: String? = definedExternally
+}
 
-external interface PrismProps : RProps {
+external interface PrismProps : Props {
     var language: String
     var style: dynamic
 }

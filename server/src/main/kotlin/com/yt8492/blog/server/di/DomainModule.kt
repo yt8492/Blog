@@ -1,8 +1,7 @@
 package com.yt8492.blog.server.di
 
-import com.yt8492.blog.server.AppConfig
-import com.yt8492.blog.server.adapter.repository.EntryRepositoryImpl
-import com.yt8492.blog.server.adapter.repository.UserRepositoryImpl
+import com.yt8492.blog.server.adapter.repository.EntryRepositoryOnDatastore
+import com.yt8492.blog.server.adapter.repository.UserRepositoryOnDatastore
 import com.yt8492.blog.server.adapter.service.AuthServiceImpl
 import com.yt8492.blog.server.domain.repository.EntryRepository
 import com.yt8492.blog.server.domain.repository.UserRepository
@@ -11,10 +10,10 @@ import org.koin.dsl.module
 
 val domainModule = module {
     single<EntryRepository> {
-        EntryRepositoryImpl()
+        EntryRepositoryOnDatastore(get())
     }
     single<UserRepository> {
-        UserRepositoryImpl()
+        UserRepositoryOnDatastore(get())
     }
     single<AuthService> {
         AuthServiceImpl(get(), get())

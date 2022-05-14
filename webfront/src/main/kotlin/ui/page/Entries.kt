@@ -3,6 +3,7 @@ package ui.page
 import api.Api
 import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
+import io.ktor.http.*
 import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -11,22 +12,27 @@ import kotlinx.css.FlexDirection
 import kotlinx.css.display
 import kotlinx.css.flexDirection
 import react.*
+import react.router.useLocation
 import styled.css
 import styled.styledDiv
 import ui.component.entryRow
 
-val entriesPage = functionalComponent<EntriesProps> { props ->
+val entriesPage = fc<Props> {
+    val location = useLocation()
+    val page = parseQueryString(location.search)["page"]?.toIntOrNull() ?: 1
     val (state, setState) = useState(listOf<Entry>())
-    useEffect(props.page) {
+    useEffect(page) {
         document.title = Constants.BLOG_TITLE
         MainScope().launch {
-            val entries = Api.getPublicEntries(props.page)
+            val entries = Api.getPublicEntries(page)
             setState(entries)
         }
     }
     styledDiv {
         state.reversed().forEach { entry ->
-            entryRow(entry)
+            entryRow {
+                attrs.entry = entry
+            }
         }
 
         css {
@@ -34,8 +40,4 @@ val entriesPage = functionalComponent<EntriesProps> { props ->
             flexDirection = FlexDirection.column
         }
     }
-}
-
-external interface EntriesProps : RProps {
-    var page: Int
 }

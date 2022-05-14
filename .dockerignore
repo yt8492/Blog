@@ -1,0 +1,5 @@
+**/build
+.idea
+.gradle
+**/.DS_Store
+credentials.json

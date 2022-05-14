@@ -4,12 +4,14 @@ import com.soywiz.klock.DateFormat
 import com.yt8492.blog.common.model.Entry
 import kotlinx.css.*
 import kotlinx.css.properties.border
-import react.RBuilder
+import react.Props
+import react.fc
 import styled.css
 import styled.styledDiv
 import styled.styledH1
 
-fun RBuilder.entryHeader(entry: Entry) {
+val entryHeader = fc<EntryHeaderProps> { props ->
+    val entry = props.entry
     styledH1 {
         + entry.title
 
@@ -47,4 +49,8 @@ fun RBuilder.entryHeader(entry: Entry) {
             marginTop = 12.px
         }
     }
+}
+
+external interface EntryHeaderProps : Props {
+    var entry: Entry
 }

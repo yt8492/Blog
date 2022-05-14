@@ -4,17 +4,20 @@ import com.yt8492.blog.common.model.Entry
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.borderBottom
-import react.RBuilder
-import react.rClass
-import react.router.dom.LinkComponent
+import react.Props
+import react.fc
+import react.router.dom.Link
 import styled.css
 import styled.styled
 import styled.styledDiv
 
-fun RBuilder.entryRow(entry: Entry) {
+val entryRow = fc<EntryRowProps> { props ->
+    val entry = props.entry
     styledDiv {
         key = entry.id.value
-        entryHeader(entry)
+        entryHeader {
+            attrs.entry = entry
+        }
 
         styledDiv {
             + entry.content
@@ -28,7 +31,7 @@ fun RBuilder.entryRow(entry: Entry) {
         }
 
         styledDiv {
-            styled(LinkComponent)() {
+            styled(Link)() {
                 + "記事を読む"
                 attrs.to = "/entries/${entry.id.value}"
 
@@ -58,4 +61,8 @@ fun RBuilder.entryRow(entry: Entry) {
             borderBottom(1.px, BorderStyle.solid, Color.lightGray)
         }
     }
+}
+
+external interface EntryRowProps : Props {
+    var entry: Entry
 }
