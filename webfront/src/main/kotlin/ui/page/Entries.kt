@@ -29,7 +29,7 @@ val entriesPage = fc<Props> {
         }
     }
     styledDiv {
-        state.reversed().forEach { entry ->
+        state.forEach { entry ->
             entryRow {
                 attrs.entry = entry
             }

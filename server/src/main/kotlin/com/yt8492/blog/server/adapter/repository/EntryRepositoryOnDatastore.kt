@@ -24,6 +24,7 @@ class EntryRepositoryOnDatastore(
             .newEntityQueryBuilder()
             .setKind(KIND)
             .setFilter(filter)
+            .setOrderBy(StructuredQuery.OrderBy.desc(PROPERTY_CREATED_AT))
             .setLimit(10)
             .setOffset((page - 1) * 10)
             .build()

@@ -1,0 +1,7 @@
+indexes:
+
+- kind: Entry
+  properties:
+    - name: isPreview
+    - name: createdAt
+      direction: desc
