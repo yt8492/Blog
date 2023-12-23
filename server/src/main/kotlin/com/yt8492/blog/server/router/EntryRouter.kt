@@ -6,13 +6,10 @@ import com.yt8492.blog.common.json.EditEntryRequestJson
 import com.yt8492.blog.server.getIntQueryParameterOrRespondBadRequest
 import com.yt8492.blog.server.getStringPathParameterOrRespondBadRequest
 import com.yt8492.blog.server.respondResult
-import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.http.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import io.ktor.util.pipeline.*
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.request.*
+import io.ktor.server.routing.*
 
 fun Route.entryRouter(controller: EntryController) {
     route("/entries") {

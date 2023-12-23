@@ -2,9 +2,9 @@ package com.yt8492.blog.server
 
 import com.yt8492.blog.common.json.MessageJson
 import com.yt8492.blog.server.adapter.controller.Result
-import io.ktor.application.*
 import io.ktor.http.*
-import io.ktor.response.*
+import io.ktor.server.application.*
+import io.ktor.server.response.*
 import io.ktor.util.pipeline.*
 
 suspend fun ApplicationCall.respondResult(result: Result) {
