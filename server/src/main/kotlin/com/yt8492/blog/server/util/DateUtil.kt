@@ -1,6 +1,6 @@
 package com.yt8492.blog.server.util
 
-import com.soywiz.klock.DateTime
+import korlibs.time.DateTime
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneOffset

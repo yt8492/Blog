@@ -1,6 +1,6 @@
 package com.yt8492.blog.common.model
 
-import com.soywiz.krypto.SHA256
+import korlibs.crypto.SHA256
 
 sealed class Password {
 

@@ -1,7 +1,7 @@
 package ui.component
 
-import com.soywiz.klock.DateFormat
 import com.yt8492.blog.common.model.Entry
+import korlibs.time.DateFormat
 import kotlinx.css.*
 import kotlinx.css.properties.border
 import react.Props

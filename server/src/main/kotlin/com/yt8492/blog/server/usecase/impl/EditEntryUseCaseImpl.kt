@@ -1,9 +1,9 @@
 package com.yt8492.blog.server.usecase.impl
 
-import com.soywiz.klock.DateTime
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.server.domain.repository.EntryRepository
 import com.yt8492.blog.server.usecase.EditEntryUseCase
+import korlibs.time.DateTime
 
 class EditEntryUseCaseImpl(
     private val entryRepository: EntryRepository

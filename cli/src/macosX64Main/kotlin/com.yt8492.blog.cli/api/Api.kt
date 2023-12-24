@@ -4,12 +4,13 @@ import com.yt8492.blog.common.json.*
 import com.yt8492.blog.common.json.converter.toModel
 import com.yt8492.blog.common.model.*
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.engine.curl.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 
 class Api(isLocal: Boolean) {
 
@@ -20,8 +21,12 @@ class Api(isLocal: Boolean) {
     }
 
     private val client = HttpClient(Curl) {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer()
+        install(ContentNegotiation) {
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                }
+            )
         }
         defaultRequest {
             header("content-type", "application/json")
@@ -32,9 +37,9 @@ class Api(isLocal: Boolean) {
         userId: UserId,
         password: Password.Raw
     ): AuthToken {
-        return client.post<AuthResponseJson>("$baseUrl/api/login") {
-            body = SignInRequestJson(userId.value, password.value)
-        }.toModel()
+        return client.post("$baseUrl/api/login") {
+            setBody(SignInRequestJson(userId.value, password.value))
+        }.body<AuthResponseJson>().toModel()
     }
 
     suspend fun createEntry(
@@ -45,16 +50,18 @@ class Api(isLocal: Boolean) {
         tags: List<String>,
         isPreview: Boolean
     ): Entry {
-        return client.post<EntryResponseJson>("$baseUrl/api/entries") {
+        return client.post("$baseUrl/api/entries") {
             header("Authorization", "Bearer ${token.value}")
-            body = CreateEntryRequestJson(
-                id?.value,
-                title,
-                content,
-                tags,
-                isPreview
+            setBody(
+                CreateEntryRequestJson(
+                    id?.value,
+                    title,
+                    content,
+                    tags,
+                    isPreview
+                )
             )
-        }.toModel()
+        }.body<EntryResponseJson>().toModel()
     }
 
     suspend fun editEntry(
@@ -66,23 +73,25 @@ class Api(isLocal: Boolean) {
         tags: List<String>?,
         isPreview: Boolean?
     ): Entry {
-        return client.patch<EntryResponseJson>("$baseUrl/api/entries/${id.value}") {
+        return client.patch("$baseUrl/api/entries/${id.value}") {
             header("Authorization", "Bearer ${token.value}")
-            body = EditEntryRequestJson(
-                newId?.value,
-                title,
-                content,
-                tags,
-                isPreview
+            setBody(
+                EditEntryRequestJson(
+                    newId?.value,
+                    title,
+                    content,
+                    tags,
+                    isPreview
+                )
             )
-        }.toModel()
+        }.body<EntryResponseJson>().toModel()
     }
 
     suspend fun deleteEntry(
         token: AuthToken,
         id: EntryId
     ) {
-        client.delete<HttpResponse>("$baseUrl/api/entries/${id.value}") {
+        client.delete("$baseUrl/api/entries/${id.value}") {
             header("Authorization", "Bearer ${token.value}")
         }
     }

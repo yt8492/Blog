@@ -3,10 +3,10 @@ package com.yt8492.blog.server.adapter.jwt
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
-import com.soywiz.klock.DateTime
-import com.soywiz.klock.DateTimeSpan
-import com.soywiz.klock.jvm.toDate
 import com.yt8492.blog.common.model.UserId
+import korlibs.time.DateTime
+import korlibs.time.DateTimeSpan
+import korlibs.time.jvm.toDate
 import java.util.*
 
 class UserJWTService(
