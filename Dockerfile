@@ -1,4 +1,4 @@
-FROM yt8492/kotlin-native:1.7.20-gradle7.6.0 as build-stage
+FROM gradle:7.6.0-jdk11 as build-stage
 ADD . /Blog
 WORKDIR /Blog
 ARG IS_PRODUCTION

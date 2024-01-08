@@ -45,7 +45,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(kotlin("stdlib-jdk8"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
     implementation("com.soywiz.korlibs.klock:klock:4.0.10")
     implementation("ch.qos.logback:logback-classic:1.4.12")

@@ -7,14 +7,20 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.util.pipeline.*
 
-suspend fun ApplicationCall.respondResult(result: Result) {
+suspend inline fun <reified L : Any, reified R : Any> ApplicationCall.respondResult(result: Result<L, R>) {
     val statusCode = HttpStatusCode.fromValue(result.statusCode)
     when (result) {
-        is Result.Object -> {
-            respond(statusCode, result.json)
+        is Result.Success -> {
+            respond(
+                status = statusCode,
+                message = result.json,
+            )
         }
-        is Result.Array -> {
-            respond(statusCode, result.list)
+        is Result.Failure -> {
+            respond(
+                status = statusCode,
+                message = result.json,
+            )
         }
     }
 }

@@ -5,6 +5,7 @@ import com.yt8492.blog.cli.service.AuthService
 import com.yt8492.blog.cli.util.FileUtil
 import com.yt8492.blog.common.model.AuthToken
 import com.yt8492.blog.common.model.EntryId
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.toKString
 import kotlinx.cli.ArgType
 import kotlinx.cli.ExperimentalCli
@@ -13,7 +14,7 @@ import kotlinx.cli.default
 import kotlinx.coroutines.runBlocking
 import platform.posix.getenv
 
-@OptIn(ExperimentalCli::class)
+@OptIn(ExperimentalCli::class, ExperimentalForeignApi::class)
 class Post : Subcommand("post", "create new entry") {
 
     private val filePath by argument(ArgType.String, "Entry markdown file")
@@ -29,11 +30,11 @@ class Post : Subcommand("post", "create new entry") {
         }
         val title = shouldNotEmptyInput("title")
         print("tags(default is empty): ")
-        val tags = readLine()?.split("([ ,])".toRegex()) ?: emptyList()
+        val tags = readlnOrNull()?.split("([ ,])".toRegex()) ?: emptyList()
         print("isPreview(default is false): ")
-        val isPreview = readLine()?.toBoolean() ?: false
+        val isPreview = readlnOrNull()?.toBoolean() ?: false
         print("id(default is random): ")
-        val id = readLine()?.takeIf { it.isNotBlank() }?.let { EntryId(it) }
+        val id = readlnOrNull()?.takeIf { it.isNotBlank() }?.let { EntryId(it) }
         val content = FileUtil.readAll(filePath)
         runBlocking {
             val entry = api.createEntry(token, id, title, content, tags, isPreview)
@@ -53,11 +54,11 @@ class Post : Subcommand("post", "create new entry") {
 
     private fun shouldNotEmptyInput(prompt: String): String {
         print("$prompt: ")
-        var input = readLine()
+        var input = readlnOrNull()
         while (input.isNullOrEmpty()) {
             println("$prompt should not empty!")
             print("$prompt: ")
-            input = readLine()
+            input = readlnOrNull()
         }
         return input
     }

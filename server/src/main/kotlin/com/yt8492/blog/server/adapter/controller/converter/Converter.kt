@@ -9,87 +9,87 @@ import com.yt8492.blog.common.json.MessageJson
 import com.yt8492.blog.server.usecase.*
 import korlibs.time.ISO8601
 
-fun GetEntryUseCase.Result.toControllerResult(): Result {
+fun GetEntryUseCase.Result.toControllerResult(): Result<MessageJson, EntryResponseJson> {
     return when (this) {
         is GetEntryUseCase.Result.Success ->
-            Result(
+            Result.Success(
                 entry.toJson(),
                 200
             )
         is GetEntryUseCase.Result.Failure ->
-            Result(
+            Result.Failure(
                 MessageJson("Entry not found"),
                 404
             )
     }
 }
 
-fun GetEntriesUseCase.Result.toControllerResult(): Result {
-    return Result(
+fun GetEntriesUseCase.Result.toControllerResult(): Result<Nothing, List<EntryResponseJson>> {
+    return Result.Success(
        entries.map { it.toJson() },
         200
     )
 }
 
-fun CreateEntryUseCase.Result.toControllerResult(): Result {
+fun CreateEntryUseCase.Result.toControllerResult(): Result<MessageJson, EntryResponseJson> {
     return when (this) {
         is CreateEntryUseCase.Result.Success ->
-            Result(
+            Result.Success(
                 entry.toJson(),
                 201
             )
         is CreateEntryUseCase.Result.Failure.EntryIdDuplicated ->
-            Result(
+            Result.Failure(
                 MessageJson("Entry id duplicated"),
                 409
             )
     }
 }
 
-fun EditEntryUseCase.Result.toControllerResult(): Result {
+fun EditEntryUseCase.Result.toControllerResult(): Result<MessageJson, EntryResponseJson> {
     return when (this) {
         is EditEntryUseCase.Result.Success ->
-            Result(
+            Result.Success(
                 entry.toJson(),
                 200
             )
         is EditEntryUseCase.Result.Failure.EntryNotFound ->
-            Result(
+            Result.Failure(
                 MessageJson("Entry not found"),
                 404
             )
         is EditEntryUseCase.Result.Failure.EntryIdDuplicated ->
-            Result(
+            Result.Failure(
                 MessageJson("Entry id duplicated"),
                 409
             )
     }
 }
 
-fun DeleteEntryUseCase.Result.toControllerResult(): Result {
+fun DeleteEntryUseCase.Result.toControllerResult(): Result<MessageJson, Empty> {
     return when (this) {
         is DeleteEntryUseCase.Result.Success ->
-            Result(
+            Result.Success(
                 Empty,
                 204
             )
         is DeleteEntryUseCase.Result.Failure.EntryNotFound ->
-            Result(
+            Result.Failure(
                 MessageJson("Entry not found"),
                 404
             )
     }
 }
 
-fun SignInUseCase.Result.toControllerResult(): Result {
+fun SignInUseCase.Result.toControllerResult(): Result<MessageJson, AuthResponseJson> {
     return when (this) {
         is SignInUseCase.Result.Success ->
-            Result(
+            Result.Success(
                 AuthResponseJson(token.value),
                 200
             )
         is SignInUseCase.Result.Failure ->
-            Result(
+            Result.Failure(
                 MessageJson("Login failed"),
                 401
             )

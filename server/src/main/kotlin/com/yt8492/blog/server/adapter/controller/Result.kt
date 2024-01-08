@@ -1,40 +1,16 @@
 package com.yt8492.blog.server.adapter.controller
 
-import com.yt8492.blog.common.json.Json
+sealed interface Result<out L : Any, out R : Any> {
 
-sealed class Result {
+    val statusCode: Int
 
-    abstract val statusCode: Int
-
-    data class Object(
-        val json: Json,
+    data class Success<T : Any>(
+        val json: T,
         override val statusCode: Int
-    ) : Result()
+    ) : Result<Nothing, T>
 
-    data class Array(
-        val list: List<Json>,
+    data class Failure<T : Any>(
+        val json: T,
         override val statusCode: Int
-    ) : Result()
-
-    companion object {
-        operator fun invoke(
-            json: Json,
-            statusCode: Int
-        ): Object {
-            return Object(
-                json,
-                statusCode
-            )
-        }
-
-        operator fun invoke(
-            list: List<Json>,
-            statusCode: Int
-        ): Array {
-            return Array(
-                list,
-                statusCode
-            )
-        }
-    }
+    ) : Result<T, Nothing>
 }

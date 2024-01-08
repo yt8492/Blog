@@ -3,7 +3,6 @@ package ui.component
 import com.yt8492.blog.common.model.Entry
 import korlibs.time.DateFormat
 import kotlinx.css.*
-import kotlinx.css.properties.border
 import react.Props
 import react.fc
 import styled.css
@@ -35,8 +34,9 @@ val entryHeader = fc<EntryHeaderProps> { props ->
 
                 css {
                     fontSize = 12.px
-                    border(1.px, BorderStyle.solid, Color.gray, 2.px)
-                    padding(2.px, 4.px)
+                    border = Border(1.px, BorderStyle.solid, Color.gray)
+                    borderRadius = 2.px
+                    padding = Padding(2.px, 4.px)
                     marginRight = 4.px
                     boxSizing = BoxSizing.borderBox
                 }

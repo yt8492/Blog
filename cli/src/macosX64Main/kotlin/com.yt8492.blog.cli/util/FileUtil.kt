@@ -1,13 +1,11 @@
 package com.yt8492.blog.cli.util
 
-import kotlinx.cinterop.ByteVar
-import kotlinx.cinterop.allocArray
-import kotlinx.cinterop.memScoped
-import kotlinx.cinterop.toKString
+import kotlinx.cinterop.*
 import platform.posix.fclose
 import platform.posix.fgets
 import platform.posix.fopen
 
+@OptIn(ExperimentalForeignApi::class)
 object FileUtil {
 
     private const val BUF_SIZE = 1024

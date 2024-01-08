@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 data class SignInRequestJson(
     val id: String,
     val password: String
-) : Json
+)

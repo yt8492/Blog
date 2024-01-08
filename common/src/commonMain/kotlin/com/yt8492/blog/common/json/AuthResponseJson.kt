@@ -5,4 +5,4 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AuthResponseJson(
     val token: String
-) : Json
+)

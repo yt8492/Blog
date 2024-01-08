@@ -26,7 +26,7 @@ val blogTitle = fc<Props> {
             justifyContent = JustifyContent.center
             fontSize = 2.rem
             fontWeight = FontWeight.bold
-            padding(28.px)
+            padding = Padding(28.px)
         }
     }
 }

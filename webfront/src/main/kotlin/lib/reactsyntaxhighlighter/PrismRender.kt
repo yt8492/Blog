@@ -1,9 +1,8 @@
-package lib.reactsyntaxhaighlighter
+package lib.reactsyntaxhighlighter
 
-import lib.reactsyntaxhaighlighter.styles.darcula
+import lib.reactsyntaxhighlighter.styles.darcula
 import react.Props
 import react.fc
-import reactsyntaxhighlighter.Prism
 
 external interface PrismRenderProps : Props {
     var language: String

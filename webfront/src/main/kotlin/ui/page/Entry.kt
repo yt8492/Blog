@@ -8,7 +8,6 @@ import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.css.*
-import kotlinx.css.properties.borderTop
 import react.*
 import react.router.useParams
 import styled.css
@@ -54,7 +53,7 @@ val entryPage = fc<Props> {
         }
 
         css {
-            borderTop(1.px, BorderStyle.solid, Color.lightGray)
+            borderTop = Border(1.px, BorderStyle.solid, Color.lightGray)
         }
     }
 }

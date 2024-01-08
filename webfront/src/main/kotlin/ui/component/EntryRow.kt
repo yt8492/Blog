@@ -3,7 +3,6 @@ package ui.component
 import com.yt8492.blog.common.model.Entry
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
-import kotlinx.css.properties.borderBottom
 import react.Props
 import react.fc
 import react.router.dom.Link
@@ -41,7 +40,7 @@ val entryRow = fc<EntryRowProps> { props ->
                     color = Color.white
                     textDecoration = TextDecoration.none
                     backgroundColor = Color("#16212C")
-                    padding(8.px, 16.px)
+                    padding = Padding(8.px, 16.px)
                     boxSizing = BoxSizing.borderBox
                 }
             }
@@ -58,7 +57,7 @@ val entryRow = fc<EntryRowProps> { props ->
             flexDirection = FlexDirection.column
             width = 100.pct
             paddingBottom = 16.px
-            borderBottom(1.px, BorderStyle.solid, Color.lightGray)
+            borderBottom = Border(1.px, BorderStyle.solid, Color.lightGray)
         }
     }
 }

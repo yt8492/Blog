@@ -1,7 +1,6 @@
 package ui.component
 
 import kotlinx.css.*
-import kotlinx.css.properties.border
 import react.Props
 import react.fc
 import styled.css
@@ -26,8 +25,9 @@ val linkButton = fc<LinkButtonProps> { props ->
             height = 24.px
             marginLeft = 20.px
             marginRight = 20.px
-            padding(8.px)
-            border(2.px, BorderStyle.solid, color, 25.pct)
+            padding = Padding(8.px)
+            border = Border(2.px, BorderStyle.solid, color)
+            borderRadius = 25.pct
         }
     }
 }

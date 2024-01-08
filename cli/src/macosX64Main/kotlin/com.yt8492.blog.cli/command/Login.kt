@@ -4,6 +4,7 @@ import com.yt8492.blog.cli.api.Api
 import com.yt8492.blog.cli.service.AuthService
 import com.yt8492.blog.common.model.Password
 import com.yt8492.blog.common.model.UserId
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.toKString
 import kotlinx.cli.ArgType
 import kotlinx.cli.ExperimentalCli
@@ -13,7 +14,7 @@ import kotlinx.coroutines.runBlocking
 import platform.posix.getpass
 import platform.posix.perror
 
-@OptIn(ExperimentalCli::class)
+@OptIn(ExperimentalCli::class, ExperimentalForeignApi::class)
 class Login : Subcommand("login", "yt8492 blog login") {
 
     private val isLocal: Boolean by option(ArgType.Boolean, shortName = "l").default(false)

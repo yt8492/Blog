@@ -27,13 +27,13 @@ class Edit : Subcommand("edit", "edit entry") {
         }
         val oldId = EntryId(id)
         print("id(empty input will be nothing changed)")
-        val newId = readLine()?.takeIf { it.isNotBlank() }?.let { EntryId(it) }
+        val newId = readlnOrNull()?.takeIf { it.isNotBlank() }?.let { EntryId(it) }
         print("title(empty input will be nothing changed)")
-        val title = readLine()?.takeIf { it.isNotBlank() }
+        val title = readlnOrNull()?.takeIf { it.isNotBlank() }
         print("tags(empty input will be nothing changed): ")
-        val tags = readLine()?.split("([ ,])".toRegex())?.filter { it.isNotBlank() }?.takeIf { it.isNotEmpty() }
+        val tags = readlnOrNull()?.split("([ ,])".toRegex())?.filter { it.isNotBlank() }?.takeIf { it.isNotEmpty() }
         print("isPreview(empty input will be nothing changed): ")
-        val isPreview = readLine()?.toBoolean() ?: false
+        val isPreview = readlnOrNull()?.toBoolean() ?: false
         val content = filePath?.let { FileUtil.readAll(it) }
         runBlocking {
             val entry = api.editEntry(token, oldId, newId, title, content, tags, isPreview)
