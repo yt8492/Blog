@@ -1,8 +1,8 @@
 package com.yt8492.blog.server.util
 
-import com.soywiz.klock.DateTime
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import korlibs.time.DateTime
 import java.time.LocalDateTime
 
 class DateUtilTest : StringSpec({

@@ -20,7 +20,9 @@ val entryPage = fc<Props> {
     val params = useParams()
     val rawId = params["id"] ?: return@fc
     val id = EntryId(rawId)
+
     val (entry, setEntry) = useState<Entry?>(null)
+
     useEffectOnce {
         MainScope().launch {
             Api.getEntryById(id)?.let {

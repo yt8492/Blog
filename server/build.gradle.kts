@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     application
 }
 
@@ -19,13 +19,15 @@ tasks {
         useJUnitPlatform()
     }
     withType<Sync> {
-        dependsOn(":webfront:browserProductionWebpack")
+        println(tasks)
+        dependsOn(":webfront:jsBrowserProductionWebpack")
         into("generated") {
             from("${rootProject.project(":webfront").buildDir}/distributions")
         }
     }
     withType<Zip> {
-        dependsOn(":webfront:browserProductionWebpack")
+        println("tasks: $tasks")
+        dependsOn(":webfront:jsBrowserProductionWebpack")
         into("generated") {
             from("${rootProject.project(":webfront").buildDir}/distributions")
         }
@@ -48,7 +50,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
     implementation("com.soywiz.korlibs.klock:klock:4.0.10")
-    implementation("ch.qos.logback:logback-classic:1.4.12")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-serialization:$ktorVersion")
@@ -61,7 +63,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
     implementation("io.ktor:ktor-server-auth-jwt:$ktorVersion")
     implementation("io.insert-koin:koin-ktor:3.2.2")
-    implementation("com.google.cloud:google-cloud-datastore:2.17.6")
+    implementation("com.google.cloud:google-cloud-datastore:2.18.0")
 
     testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
     testImplementation("io.kotest:kotest-assertions-core:5.5.4")

@@ -9,15 +9,15 @@ import react.*
 import react.dom.code
 import kotlin.js.json
 
+@JsModule("remark-gfm")
+@JsNonModule
+external val remarkGfm: dynamic
+
 @JsModule("react-markdown")
 @JsNonModule
 internal external object Markdown : FC<_ReactMarkdownProps> {
     override var displayName: String? = definedExternally
 }
-
-@JsModule("remark-gfm")
-@JsNonModule
-external val remarkGfm: dynamic
 
 @JsName("ReactMarkdownProps")
 internal external interface _ReactMarkdownProps : Props {

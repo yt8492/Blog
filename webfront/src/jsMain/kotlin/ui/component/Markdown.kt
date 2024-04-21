@@ -3,12 +3,10 @@ package ui.component
 import kotlinx.css.*
 import lib.reactmarkdown.remarkGfm
 import lib.reactmarkdown.reactMarkdown
-import lib.reactsyntaxhighlighter.prismRender
 import react.Props
 import react.fc
 import styled.css
 import styled.styledDiv
-import kotlin.js.json
 
 val markdown = fc<MarkdownProps> { props ->
     styledDiv {
