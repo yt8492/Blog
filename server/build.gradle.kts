@@ -22,14 +22,14 @@ tasks {
         println(tasks)
         dependsOn(":webfront:jsBrowserProductionWebpack")
         into("generated") {
-            from("${rootProject.project(":webfront").buildDir}/distributions")
+            from("${rootProject.project(":webfront").buildDir}/dist/js/productionExecutable")
         }
     }
     withType<Zip> {
         println("tasks: $tasks")
         dependsOn(":webfront:jsBrowserProductionWebpack")
         into("generated") {
-            from("${rootProject.project(":webfront").buildDir}/distributions")
+            from("${rootProject.project(":webfront").buildDir}/dist/js/productionExecutable")
         }
     }
 }
