@@ -4,31 +4,37 @@ import api.Api
 import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
+import js.promise.promise
 import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import kotlinx.css.*
 import react.*
-import react.router.useParams
+import react.router.useLoaderData
+import remix.run.router.LoaderFunction
 import styled.css
 import styled.styledArticle
 import styled.styledDiv
 import styled.styledFooter
 import ui.component.*
 
-val entryPage = fc<Props> {
-    val params = useParams()
-    val rawId = params["id"] ?: return@fc
+val entryLoader = LoaderFunction<dynamic> { arg ->
+    val rawId = arg.params["id"] ?: error("id not found")
+    console.log(rawId)
     val id = EntryId(rawId)
+    MainScope().promise {
+        val entry = Api.getEntryById(id)
+        console.log(entry)
+        entry
+    }
+}
 
-    val (entry, setEntry) = useState<Entry?>(null)
-
-    useEffectOnce {
-        MainScope().launch {
-            Api.getEntryById(id)?.let {
-                setEntry(it)
-                document.title = """${it.title} - ${Constants.BLOG_TITLE}"""
-            }
+val entryPage = fc<Props> {
+    console.log("entry page")
+    val entry = useLoaderData() as Entry?
+    console.log(entry)
+    useEffect(entry) {
+        entry?.let {
+            document.title = """${it.title} - ${Constants.BLOG_TITLE}"""
         }
     }
     styledArticle {

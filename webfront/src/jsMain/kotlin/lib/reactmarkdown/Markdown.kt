@@ -1,6 +1,6 @@
 package lib.reactmarkdown
 
-import js.core.Object
+import js.objects.Object
 import kotlinx.html.classes
 import lib.reactsyntaxhighlighter.Prism
 import lib.reactsyntaxhighlighter.styles.darcula

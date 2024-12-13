@@ -20,16 +20,16 @@ tasks {
     }
     withType<Sync> {
         println(tasks)
-        dependsOn(":webfront:jsBrowserProductionWebpack")
+        dependsOn(":webfront:jsBrowserDevelopmentWebpack")
         into("generated") {
-            from("${rootProject.project(":webfront").buildDir}/dist/js/productionExecutable")
+            from("${rootProject.project(":webfront").layout.buildDirectory.asFile.get()}/dist/js/developmentExecutable")
         }
     }
     withType<Zip> {
         println("tasks: $tasks")
-        dependsOn(":webfront:jsBrowserProductionWebpack")
+        dependsOn(":webfront:jsBrowserDevelopmentWebpack")
         into("generated") {
-            from("${rootProject.project(":webfront").buildDir}/dist/js/productionExecutable")
+            from("${rootProject.project(":webfront").layout.buildDirectory.asFile.get()}/dist/js/developmentExecutable")
         }
     }
 }

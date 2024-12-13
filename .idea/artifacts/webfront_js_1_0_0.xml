@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="webfront-js-1.0.0">
+    <output-path>$PROJECT_DIR$/webfront/build/libs</output-path>
+    <root id="archive" name="webfront-js-1.0.0.jar">
+      <element id="module-output" name="Blog.webfront.jsMain" />
+    </root>
+  </artifact>
+</component>

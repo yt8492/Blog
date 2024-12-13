@@ -1,10 +1,24 @@
 package ui.page
 
-import js.core.jso
-import kotlinx.css.*
-import react.*
+import com.yt8492.blog.common.model.Entry
+import js.objects.jso
+import kotlinx.css.LinearDimension
+import kotlinx.css.Margin
+import kotlinx.css.fontFamily
+import kotlinx.css.fontSize
+import kotlinx.css.margin
+import kotlinx.css.maxWidth
+import kotlinx.css.pct
+import kotlinx.css.px
+import kotlinx.css.width
+import react.Props
+import react.create
+import react.dom.html.ReactHTML.div
+import react.fc
+import react.router.Outlet
 import react.router.RouterProvider
 import react.router.dom.createBrowserRouter
+import react.router.useLoaderData
 import styled.css
 import styled.styledDiv
 import ui.component.blogTitle
@@ -12,40 +26,51 @@ import ui.component.blogTitle
 val appRouter = createBrowserRouter(
     routes = arrayOf(
         jso {
-            index = true
-            element = entriesPage.create()
-        },
-        jso {
-            path = "entries"
-            element = entriesPage.create()
+            path = "/"
+            element = div.create {
+                fc<Props> {
+                    root()
+                }()
+            }
             children = arrayOf(
                 jso {
-                    path = ":id"
-                    element = entryPage.create()
-                }
+                    index = true
+                    element = entriesPage.create()
+                },
+                jso {
+                    path = "entries/:id"
+                    loader = entryLoader
+                    element = div.create {
+                        fc<Props> {
+                            console.log("entry page")
+                            val entry = useLoaderData() as Entry?
+                            console.log(entry)
+                            entryPage()
+                        }
+                    }
+                },
             )
         },
     )
 )
 
-val rootPage = fc<Props> {
+val root = fc<Props> {
     styledDiv {
         blogTitle()
-        styledDiv {
-            RouterProvider {
-                attrs.router = appRouter
-            }
-
-            css {
-                width = 90.pct
-                maxWidth = 1000.px
-                margin = Margin(LinearDimension.auto)
-            }
-        }
+        Outlet()
 
         css {
             fontSize = 16.px
             fontFamily = "\"Hiragino Kaku Gothic ProN\", \"Meiryo\", sans-serif"
+            width = 90.pct
+            maxWidth = 1000.px
+            margin = Margin(LinearDimension.auto)
         }
+    }
+}
+
+val rootPage = fc<Props> {
+    RouterProvider {
+        attrs.router = appRouter
     }
 }

@@ -1,6 +1,6 @@
 package lib
 
-import js.core.Object
+import js.objects.Object
 import kotlin.js.Json
 import kotlin.js.json
 
