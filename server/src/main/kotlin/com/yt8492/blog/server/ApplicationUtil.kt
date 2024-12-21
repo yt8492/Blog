@@ -5,7 +5,7 @@ import com.yt8492.blog.server.adapter.controller.Result
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
-import io.ktor.util.pipeline.*
+import io.ktor.server.routing.*
 
 suspend inline fun <reified L : Any, reified R : Any> ApplicationCall.respondResult(result: Result<L, R>) {
     val statusCode = HttpStatusCode.fromValue(result.statusCode)
@@ -25,7 +25,7 @@ suspend inline fun <reified L : Any, reified R : Any> ApplicationCall.respondRes
     }
 }
 
-suspend fun PipelineContext<Unit, ApplicationCall>.getIntQueryParameterOrRespondBadRequest(
+suspend fun RoutingContext.getIntQueryParameterOrRespondBadRequest(
     name: String
 ): Int? {
     val result = call.request.queryParameters[name]?.toIntOrNull()
@@ -39,7 +39,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.getIntQueryParameterOrRespond
     return result
 }
 
-suspend fun PipelineContext<Unit, ApplicationCall>.getStringPathParameterOrRespondBadRequest(
+suspend fun RoutingContext.getStringPathParameterOrRespondBadRequest(
     name: String
 ): String? {
     val result = call.parameters[name]
