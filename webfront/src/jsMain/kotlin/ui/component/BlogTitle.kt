@@ -1,32 +1,29 @@
 package ui.component
 
 import com.yt8492.blog.common.Constants
-import kotlinx.css.*
-import kotlinx.css.properties.TextDecoration
+import emotion.react.css
+import react.FC
 import react.Props
-import react.fc
+import react.dom.html.ReactHTML.header
 import react.router.dom.Link
-import styled.css
-import styled.styled
-import styled.styledHeader
+import web.cssom.*
 
-val blogTitle = fc<Props> {
-    styledHeader {
-        styled(Link)() {
+val blogTitle = FC<Props> {
+    header {
+        Link {
             + Constants.BLOG_TITLE
-            attrs.to = "/"
+            to = "/"
             css {
-                color = Color.black
-                textDecoration = TextDecoration.none
+                color = NamedColor.black
+                textDecoration = None.none
             }
         }
-
         css {
             display = Display.flex
             justifyContent = JustifyContent.center
             fontSize = 2.rem
             fontWeight = FontWeight.bold
-            padding = Padding(28.px)
+            padding = Padding(28.px, 28.px)
         }
     }
 }

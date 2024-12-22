@@ -1,72 +1,72 @@
 package ui.component
 
-import kotlinx.css.*
+import emotion.react.css
 import lib.reactmarkdown.remarkGfm
 import lib.reactmarkdown.reactMarkdown
+import react.FC
 import react.Props
-import react.fc
-import styled.css
-import styled.styledDiv
+import react.dom.html.ReactHTML.div
+import web.cssom.*
 
-val markdown = fc<MarkdownProps> { props ->
-    styledDiv {
+val markdown = FC<MarkdownProps> { props ->
+    div {
         reactMarkdown {
-            attrs.children = props.src
-            attrs.plugins = listOf(remarkGfm)
+            + props.src
+            plugins = listOf(remarkGfm)
         }
 
         css {
             padding = Padding(10.px, 30.px, 10.px)
-            child("table") {
+            Selector("table")() {
                 margin = Margin(15.px, 0.px)
-                padding = Padding(0.px)
+                padding = Padding(0.px, 0.px)
                 borderSpacing = 0.px
                 borderCollapse = BorderCollapse.collapse
             }
-            child("table tr") {
-                borderTop = Border(1.px, BorderStyle.solid, Color("#cccccc"))
-                backgroundColor = Color.white
-                margin = Margin(0.px)
-                padding = Padding(0.px)
+            Selector("table tr")() {
+                borderTop = Border(1.px, LineStyle.solid, Color("#cccccc"))
+                backgroundColor = NamedColor.white
+                margin = Margin(0.px, 0.px)
+                padding = Padding(0.px, 0.px)
             }
-            child("table tr:nth-child(2n)") {
+            Selector("table tr:nth-Selector(2n)")() {
                 backgroundColor = Color("#f8f8f8")
             }
-            child("table tr th") {
+            Selector("table tr th")() {
                 fontWeight = FontWeight.bold
-                border = Border(1.px, BorderStyle.solid, Color("#cccccc"))
+                border = Border(1.px, LineStyle.solid, Color("#cccccc"))
                 textAlign = TextAlign.left
-                margin = Margin(0.px)
+                margin = Margin(0.px, 0.px)
                 padding = Padding(6.px, 13.px)
             }
-            child("table tr td") {
-                border = Border(1.px, BorderStyle.solid, Color("#cccccc"))
+            Selector("table tr td")() {
+                border = Border(1.px, LineStyle.solid, Color("#cccccc"))
                 textAlign = TextAlign.left
-                margin = Margin(0.px)
+                margin = Margin(0.px, 0.px)
                 padding = Padding(6.px, 13.px)
             }
-            child("table tr th :first-child, table tr td :first-child") {
+            Selector("table tr th :first-child, table tr td :first-child")() {
                 marginTop = 0.px
             }
-            child("table tr th :last-child, table tr td :last-child") {
+            Selector("table tr th :last-child, table tr td :last-child")() {
                 marginBottom = 0.px
             }
-            child("code") {
+            Selector("code")() {
                 padding = Padding(0.2.em, 0.4.em)
-                margin = Margin(0.px)
+                margin = Margin(0.px, 0.px)
                 fontSize = 85.pct
                 backgroundColor = Color("rgba(27,31,35,.05)")
             }
-            child("pre") {
+            Selector("pre")() {
                 wordWrap = WordWrap.normal
             }
-            child("pre>code") {
-                padding = Padding(0.px)
-                margin = Margin(0.px)
+            Selector("pre>code")() {
+                padding = Padding(0.px, 0.px)
+                margin = Margin(0.px, 0.px)
                 fontSize = 100.pct
                 wordBreak = WordBreak.normal
                 whiteSpace = WhiteSpace.pre
-                backgroundColor = Color.transparent
+                backgroundColor = NamedColor.transparent
                 borderWidth = 0.px
 
             }

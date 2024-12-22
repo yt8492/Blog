@@ -1,24 +1,22 @@
 package ui.component
 
 import com.yt8492.blog.common.model.Entry
-import kotlinx.css.*
-import kotlinx.css.properties.TextDecoration
+import emotion.react.css
+import react.FC
 import react.Props
-import react.fc
+import react.dom.html.ReactHTML.div
 import react.router.dom.Link
-import styled.css
-import styled.styled
-import styled.styledDiv
+import web.cssom.*
 
-val entryRow = fc<EntryRowProps> { props ->
+val entryRow = FC<EntryRowProps> { props ->
     val entry = props.entry
-    styledDiv {
+    div {
         key = entry.id.value
         entryHeader {
-            attrs.entry = entry
+            this.entry = entry
         }
 
-        styledDiv {
+        div {
             + entry.content
 
             css {
@@ -29,16 +27,16 @@ val entryRow = fc<EntryRowProps> { props ->
             }
         }
 
-        styledDiv {
-            styled(Link)() {
+        div {
+            Link {
                 + "記事を読む"
-                attrs.to = "/entries/${entry.id.value}"
+                to = "/entries/${entry.id.value}"
 
                 css {
                     fontSize = 16.px
                     fontWeight = FontWeight.bold
-                    color = Color.white
-                    textDecoration = TextDecoration.none
+                    color = NamedColor.white
+                    textDecoration = None.none
                     backgroundColor = Color("#16212C")
                     padding = Padding(8.px, 16.px)
                     boxSizing = BoxSizing.borderBox
@@ -57,7 +55,7 @@ val entryRow = fc<EntryRowProps> { props ->
             flexDirection = FlexDirection.column
             width = 100.pct
             paddingBottom = 16.px
-            borderBottom = Border(1.px, BorderStyle.solid, Color.lightGray)
+            borderBottom = Border(1.px, LineStyle.solid, NamedColor.lightgray)
         }
     }
 }

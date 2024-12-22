@@ -1,40 +1,40 @@
 package ui.component
 
 import com.yt8492.blog.common.model.Entry
+import emotion.react.css
 import korlibs.time.DateFormat
-import kotlinx.css.*
+import react.FC
 import react.Props
-import react.fc
-import styled.css
-import styled.styledDiv
-import styled.styledH1
+import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.h1
+import web.cssom.*
 
-val entryHeader = fc<EntryHeaderProps> { props ->
+val entryHeader = FC<EntryHeaderProps> { props ->
     val entry = props.entry
-    styledH1 {
+    h1 {
         + entry.title
 
         css {
             marginBottom = 8.px
         }
     }
-    styledDiv {
+    div {
         + entry.createdAt.toString(DateFormat("yyyy/MM/dd"))
 
         css {
             fontSize = 16.px
-            color = Color.gray
+            color = NamedColor.gray
         }
     }
-    styledDiv {
+    div {
         entry.tags.forEach {
-            styledDiv {
+            div {
                 + "# $it"
                 key = it
 
                 css {
                     fontSize = 12.px
-                    border = Border(1.px, BorderStyle.solid, Color.gray)
+                    border = Border(1.px, LineStyle.solid, NamedColor.gray)
                     borderRadius = 2.px
                     padding = Padding(2.px, 4.px)
                     marginRight = 4.px

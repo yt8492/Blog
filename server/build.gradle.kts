@@ -12,21 +12,32 @@ application {
 }
 
 tasks {
+    val isProduction = System.getenv("IS_PRODUCTION") != null
+    val webpackTask = if (isProduction) {
+        ":webfront:jsBrowserDistribution"
+    } else {
+        ":webfront:jsBrowserDevelopmentExecutableDistribution"
+    }
+    val webpackDir = if (isProduction) {
+        "${rootProject.project(":webfront").layout.buildDirectory.asFile.get()}/dist/js/productionExecutable"
+    } else {
+        "${rootProject.project(":webfront").layout.buildDirectory.asFile.get()}/dist/js/developmentExecutable"
+    }
     withType<Test> {
         useJUnitPlatform()
     }
     withType<Sync> {
         println(tasks)
-        dependsOn(":webfront:jsBrowserProductionWebpack")
+        dependsOn(webpackTask)
         into("generated") {
-            from("${rootProject.project(":webfront").layout.buildDirectory.asFile.get()}/kotlin-webpack/js/productionExecutable")
+            from(webpackDir)
         }
     }
     withType<Zip> {
         println("tasks: $tasks")
-        dependsOn(":webfront:jsBrowserProductionWebpack")
+        dependsOn(webpackTask)
         into("generated") {
-            from("${rootProject.project(":webfront").layout.buildDirectory.asFile.get()}/kotlin-webpack/js/productionExecutable")
+            from(webpackDir)
         }
     }
 }

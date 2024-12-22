@@ -3,21 +3,19 @@ package ui.page
 import api.Api
 import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
+import emotion.react.css
 import io.ktor.http.*
 import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kotlinx.css.Display
-import kotlinx.css.FlexDirection
-import kotlinx.css.display
-import kotlinx.css.flexDirection
 import react.*
+import react.dom.html.ReactHTML.div
 import react.router.useLocation
-import styled.css
-import styled.styledDiv
 import ui.component.entryRow
+import web.cssom.Display
+import web.cssom.FlexDirection
 
-val entriesPage = fc<Props> {
+val entriesPage = FC<Props> {
     val location = useLocation()
     val page = parseQueryString(location.search)["page"]?.toIntOrNull() ?: 1
     val (state, setState) = useState(listOf<Entry>())
@@ -28,10 +26,10 @@ val entriesPage = fc<Props> {
             setState(entries)
         }
     }
-    styledDiv {
+    div {
         state.reversed().forEach { entry ->
             entryRow {
-                attrs.entry = entry
+                this.entry = entry
             }
         }
 

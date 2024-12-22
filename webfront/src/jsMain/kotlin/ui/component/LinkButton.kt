@@ -1,19 +1,23 @@
 package ui.component
 
-import kotlinx.css.*
+import emotion.react.css
+import react.FC
 import react.Props
-import react.fc
-import styled.css
-import styled.styledA
-import styled.styledImg
+import react.dom.html.ReactHTML.a
+import react.dom.html.ReactHTML.img
+import web.cssom.*
+import web.window.WindowTarget
 
-val linkButton = fc<LinkButtonProps> { props ->
-    styledA(href = props.url, target = "_blank") {
+val linkButton = FC<LinkButtonProps> { props ->
+    a {
+        href = props.url
+        target = WindowTarget._blank
         key = props.url
-        attrs.rel = "nofollow"
-        styledImg(src = props.src) {
+        rel = "nofollow"
+        img {
+            src = props.src
             css {
-                width = LinearDimension.inherit
+                width = Globals.inherit
             }
         }
 
@@ -25,8 +29,8 @@ val linkButton = fc<LinkButtonProps> { props ->
             height = 24.px
             marginLeft = 20.px
             marginRight = 20.px
-            padding = Padding(8.px)
-            border = Border(2.px, BorderStyle.solid, color)
+            padding = Padding(8.px, 8.px)
+            border = Border(2.px, LineStyle.solid, props.color)
             borderRadius = 25.pct
         }
     }
