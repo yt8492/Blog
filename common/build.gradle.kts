@@ -8,7 +8,6 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 kotlin {
@@ -24,9 +23,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
-                implementation("com.soywiz.korlibs.krypto:krypto:2.2.0")
-                implementation("com.soywiz.korlibs.klock:klock:2.2.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+                implementation("com.soywiz.korlibs.krypto:krypto:4.0.10")
+                implementation(libs.korlibs.time)
             }
         }
         all {

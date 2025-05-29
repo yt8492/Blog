@@ -13,23 +13,26 @@ import com.yt8492.blog.server.domain.repository.UserRepository
 import com.yt8492.blog.server.router.entryRouter
 import com.yt8492.blog.server.router.userRouter
 import com.yt8492.blog.server.router.viewRouter
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.features.*
 import org.slf4j.event.*
-import io.ktor.routing.*
 import io.ktor.http.*
-import io.ktor.auth.*
-import io.ktor.auth.jwt.*
-import io.ktor.serialization.*
-import org.koin.ktor.ext.Koin
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
+import io.ktor.server.plugins.calllogging.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.plugins.cors.routing.*
+import io.ktor.server.plugins.statuspages.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
+import org.koin.ktor.plugin.Koin
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @Suppress("unused") // Referenced in application.conf
-@kotlin.jvm.JvmOverloads
+@JvmOverloads
 fun Application.module(testing: Boolean = false) {
     install(CallLogging) {
         level = Level.INFO
@@ -46,14 +49,16 @@ fun Application.module(testing: Boolean = false) {
 
     install(CORS) {
         anyHost()
-        method(HttpMethod.Post)
+        allowMethod(HttpMethod.Post)
+        allowMethod(HttpMethod.Put)
+        allowMethod(HttpMethod.Patch)
         allowSameOrigin = false
         allowNonSimpleContentTypes = true
     }
 
     install(StatusPages) {
-        exception<Throwable> {
-            log.error("unknown error", it)
+        exception<Throwable> { call, cause ->
+            this@module.log.error("unknown error", cause)
             call.respond(HttpStatusCode.InternalServerError)
         }
     }

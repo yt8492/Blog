@@ -1,11 +1,11 @@
 plugins {
     kotlin("jvm")
+    alias(libs.plugins.shadow)
     application
-    id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
 application {
-    mainClassName = ("com.yt8492.blog.sandbox.MainKt")
+    mainClass.set("com.yt8492.blog.sandbox.MainKt")
 }
 
 repositories {

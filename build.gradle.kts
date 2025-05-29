@@ -1,6 +1,8 @@
 plugins {
-    kotlin("multiplatform") version "1.6.21" apply false
-    kotlin("plugin.serialization") version "1.6.21" apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlinx.serialization) apply false
+    alias(libs.plugins.shadow) apply false
 }
 
 group = "org.yt8492"

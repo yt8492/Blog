@@ -15,4 +15,4 @@ data class EntryResponseJson(
     val createdAt: String,
     @SerialName("updated_at")
     val updatedAt: String
-) : Json
+)

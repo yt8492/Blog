@@ -2,24 +2,30 @@ package com.yt8492.blog.server
 
 import com.yt8492.blog.common.json.MessageJson
 import com.yt8492.blog.server.adapter.controller.Result
-import io.ktor.application.*
 import io.ktor.http.*
-import io.ktor.response.*
-import io.ktor.util.pipeline.*
+import io.ktor.server.application.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 
-suspend fun ApplicationCall.respondResult(result: Result) {
+suspend inline fun <reified L : Any, reified R : Any> ApplicationCall.respondResult(result: Result<L, R>) {
     val statusCode = HttpStatusCode.fromValue(result.statusCode)
     when (result) {
-        is Result.Object -> {
-            respond(statusCode, result.json)
+        is Result.Success -> {
+            respond(
+                status = statusCode,
+                message = result.json,
+            )
         }
-        is Result.Array -> {
-            respond(statusCode, result.list)
+        is Result.Failure -> {
+            respond(
+                status = statusCode,
+                message = result.json,
+            )
         }
     }
 }
 
-suspend fun PipelineContext<Unit, ApplicationCall>.getIntQueryParameterOrRespondBadRequest(
+suspend fun RoutingContext.getIntQueryParameterOrRespondBadRequest(
     name: String
 ): Int? {
     val result = call.request.queryParameters[name]?.toIntOrNull()
@@ -33,7 +39,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.getIntQueryParameterOrRespond
     return result
 }
 
-suspend fun PipelineContext<Unit, ApplicationCall>.getStringPathParameterOrRespondBadRequest(
+suspend fun RoutingContext.getStringPathParameterOrRespondBadRequest(
     name: String
 ): String? {
     val result = call.parameters[name]

@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js")
+    alias(libs.plugins.kotlin.multiplatform)
 }
 
 group = "org.yt8492"
@@ -9,36 +9,43 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation(project(":common"))
-    implementation(kotlin("stdlib-js"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-react:18.0.0-pre.332-kotlin-1.6.21")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:18.0.0-pre.332-kotlin-1.6.21")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-react-router-dom:6.3.0-pre.332-kotlin-1.6.21")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-css:1.0.0-pre.332-kotlin-1.6.21")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-styled-next:1.1.0-pre.332-kotlin-1.6.21")
-    implementation("io.ktor:ktor-client-core:1.6.1")
-    implementation("io.ktor:ktor-client-serialization:1.6.1")
-    implementation("com.soywiz.korlibs.klock:klock:2.2.0")
-    implementation(npm("react-markdown", "5.0.3"))
-    implementation(npm("remark-gfm", "1.0.0"))
-    implementation(npm("react-syntax-highlighter", "15.4.3"))
-}
-
 kotlin {
     js(IR) {
         browser {
-            webpackTask {
-                cssSupport.enabled = true
-                outputFileName = "main.js"
-            }
-
-            runTask {
-                cssSupport.enabled = true
+            commonWebpackConfig {
+                cssSupport {
+                    enabled.set(true)
+                }
                 outputFileName = "main.js"
             }
         }
         binaries.executable()
+    }
+
+    sourceSets {
+        val jsMain by getting {
+            dependencies {
+                implementation(project(":common"))
+                implementation(kotlin("stdlib-js"))
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlin.react)
+                implementation(libs.kotlin.react.dom)
+                implementation(libs.kotlin.react.router)
+                implementation(libs.kotlin.react.router.dom)
+                implementation(libs.kotlin.remix.run.router)
+                implementation(libs.kotlin.css)
+                implementation(libs.kotlin.emotion)
+                implementation(libs.kotlin.js)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.ktor.client.contentNegotiation)
+                implementation(libs.korlibs.time)
+
+                implementation(npm("react-markdown", "9.0.1"))
+                implementation(npm("remark-gfm", "4.0.0"))
+                implementation(npm("react-syntax-highlighter", "15.5.0"))
+                implementation(npm("webpack-node-externals", "3.0.0"))
+            }
+        }
     }
 }

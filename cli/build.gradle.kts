@@ -22,7 +22,6 @@ kotlin {
                     entryPoint = "com.yt8492.blog.cli.main"
                 }
             }
-            compilations["main"].enableEndorsedLibs = true
             compilations.all {
                 kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
             }
@@ -32,11 +31,13 @@ kotlin {
     sourceSets {
         val macosX64Main by getting {
             dependencies {
+                val ktorVersion = "2.3.7"
                 implementation(project(":common"))
                 implementation(kotlin("stdlib-common"))
-                implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.1")
-                implementation("io.ktor:ktor-client-curl:1.5.4")
-                implementation("io.ktor:ktor-client-serialization:1.5.4")
+                implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.6")
+                implementation("io.ktor:ktor-client-curl:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
             }
         }
     }

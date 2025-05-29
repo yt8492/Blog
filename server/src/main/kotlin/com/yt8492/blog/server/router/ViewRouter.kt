@@ -6,12 +6,12 @@ import com.yt8492.blog.common.model.EntryId
 import com.yt8492.blog.server.OGPService
 import com.yt8492.blog.server.domain.repository.EntryRepository
 import com.yt8492.blog.server.getStringPathParameterOrRespondBadRequest
-import io.ktor.application.*
-import io.ktor.html.*
 import io.ktor.http.*
-import io.ktor.http.content.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.html.*
+import io.ktor.server.http.content.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import kotlinx.html.*
 
 fun Route.viewRouter(entryRepository: EntryRepository) {
@@ -46,7 +46,9 @@ fun Route.viewRouter(entryRepository: EntryRepository) {
         }
         get("/ogp") {
             val entryId = getStringPathParameterOrRespondBadRequest("id") ?: return@get
+            println("entryId: $entryId")
             val entry = entryRepository.findById(EntryId(entryId)) ?: return@get
+            println("entry: ${entry.title}")
             val bytes = OGPService.createImageByteArray(entry)
             call.response.headers.append(HttpHeaders.CacheControl, "max-age=3600")
             call.respondBytes(bytes, ContentType.defaultForFileExtension("png"))

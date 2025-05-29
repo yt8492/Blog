@@ -2,11 +2,11 @@ package com.yt8492.blog.server.adapter.repository
 
 import com.google.cloud.Timestamp
 import com.google.cloud.datastore.*
-import com.soywiz.klock.jvm.toDate
-import com.soywiz.klock.jvm.toDateTime
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
 import com.yt8492.blog.server.domain.repository.EntryRepository
+import korlibs.time.jvm.toDate
+import korlibs.time.jvm.toDateTime
 
 class EntryRepositoryOnDatastore(
     private val datastore: Datastore,

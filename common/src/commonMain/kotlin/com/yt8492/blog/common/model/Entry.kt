@@ -1,6 +1,6 @@
 package com.yt8492.blog.common.model
 
-import com.soywiz.klock.DateTime
+import korlibs.time.DateTime
 
 data class Entry(
     val id: EntryId,

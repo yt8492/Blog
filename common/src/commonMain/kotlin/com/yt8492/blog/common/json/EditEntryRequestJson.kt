@@ -11,4 +11,4 @@ data class EditEntryRequestJson(
     val tags: List<String>? = null,
     @SerialName("is_preview")
     val isPreview: Boolean? = null
-) : Json
+)
