@@ -27,7 +27,7 @@ val entriesPage = FC<Props> {
         }
     }
     div {
-        state.reversed().forEach { entry ->
+        state.forEach { entry ->
             entryRow {
                 this.entry = entry
             }

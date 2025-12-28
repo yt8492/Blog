@@ -22,6 +22,7 @@ class EntryRepositoryOnDatastore(
         val filter = StructuredQuery.PropertyFilter.eq(PROPERTY_IS_PREVIEW, false)
         val query = Query
             .newEntityQueryBuilder()
+            .setOrderBy(StructuredQuery.OrderBy.desc(PROPERTY_CREATED_AT))
             .setKind(KIND)
             .setFilter(filter)
             .setLimit(10)
