@@ -45,6 +45,7 @@ kotlin {
                 implementation(npm("remark-gfm", "4.0.0"))
                 implementation(npm("react-syntax-highlighter", "15.5.0"))
                 implementation(npm("webpack-node-externals", "3.0.0"))
+                implementation(npm("rehype-raw", "7.0.0"))
             }
         }
     }

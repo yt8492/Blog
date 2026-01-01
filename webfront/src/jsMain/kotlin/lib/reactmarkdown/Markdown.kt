@@ -18,6 +18,15 @@ private external object RemarkGfm {
 
 val remarkGfm = RemarkGfm.remarkGfm
 
+@JsModule("rehype-raw")
+@JsNonModule
+private external object RehypeRaw {
+    @JsName("default")
+    val rehypeRaw: dynamic
+}
+
+val rehypeRaw = RehypeRaw.rehypeRaw
+
 @JsModule("react-markdown")
 @JsNonModule
 private external object ReactMarkdown {
@@ -28,18 +37,21 @@ private external object ReactMarkdown {
 @JsName("ReactMarkdownProps")
 internal external interface _ReactMarkdownProps : PropsWithChildren {
     var remarkPlugins: Array<dynamic>
+    var rehypePlugins: Array<dynamic>
     var components: dynamic
 }
 
 @JsName("_ReactMarkdownProps")
 external interface ReactMarkdownProps : PropsWithChildren {
-    var plugins: List<dynamic>
+    var remarkPlugins: List<dynamic>
+    var rehypePlugins: List<dynamic>
 }
 
 val reactMarkdown = FC<ReactMarkdownProps> { props ->
     ReactMarkdown.Markdown {
         + props.children
-        remarkPlugins = props.plugins.toTypedArray()
+        remarkPlugins = props.remarkPlugins.toTypedArray()
+        rehypePlugins = props.rehypePlugins.toTypedArray()
         components = json(
             "code" to fun (props: dynamic): ReactNode {
                 val children: String = props.children as String

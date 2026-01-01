@@ -3,6 +3,7 @@ package ui.component
 import emotion.react.css
 import lib.reactmarkdown.remarkGfm
 import lib.reactmarkdown.reactMarkdown
+import lib.reactmarkdown.rehypeRaw
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.div
@@ -12,7 +13,8 @@ val markdown = FC<MarkdownProps> { props ->
     div {
         reactMarkdown {
             + props.src
-            plugins = listOf(remarkGfm)
+            remarkPlugins = listOf(remarkGfm)
+            rehypePlugins = listOf(rehypeRaw)
         }
 
         css {
