@@ -2,17 +2,19 @@ package ui.component
 
 import com.yt8492.blog.common.Constants
 import emotion.react.css
+import js.reflect.unsafeCast
 import react.FC
 import react.Props
+import tanstack.router.core.RoutePath
 import react.dom.html.ReactHTML.header
-import react.router.dom.Link
+import tanstack.react.router.Link
 import web.cssom.*
 
 val blogTitle = FC<Props> {
     header {
         Link {
             + Constants.BLOG_TITLE
-            to = "/"
+            to = "/".unsafeCast<RoutePath>()
             css {
                 color = NamedColor.black
                 textDecoration = None.none

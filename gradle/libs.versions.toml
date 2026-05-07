@@ -11,10 +11,8 @@ koin = "4.1.1"
 google-cloud-datastore = "2.35.0"
 kotest = "6.0.4"
 kotlin-react = "2026.5.1-19.2.6"
-kotlin-react-router = "2025.1.6-6.28.0"
-kotlin-remix-run-router = "2025.1.6-1.21.0"
+kotlin-tanstack-react-router = "2026.5.1-1.169.1"
 kotlin-css = "2026.5.1"
-kotlin-styled-next = "2026.2.8"
 kotlin-js = "2026.5.1"
 kotlin-emotion-react = "2026.5.1-11.14.0"
 krypto = "4.0.10"
@@ -45,13 +43,10 @@ kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core",
 kotest-property = { group = "io.kotest", name = "kotest-property", version.ref = "kotest" }
 kotlin-react = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-react", version.ref = "kotlin-react" }
 kotlin-react-dom = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-react-dom", version.ref = "kotlin-react" }
-kotlin-react-router = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-react-router", version.ref = "kotlin-react-router" }
-kotlin-react-router-dom = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-react-router-dom", version.ref = "kotlin-react-router" }
+kotlin-tanstack-react-router = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-tanstack-react-router", version.ref = "kotlin-tanstack-react-router" }
 kotlin-css = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-css", version.ref = "kotlin-css" }
-kotlin-styled-next = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-styled-next", version.ref = "kotlin-styled-next" }
 kotlin-js = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-js", version.ref = "kotlin-js" }
 kotlin-emotion-react = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-emotion-react", version.ref = "kotlin-emotion-react" }
-kotlin-remix-run-router = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-remix-run-router", version.ref = "kotlin-remix-run-router" }
 krypto = { group = "com.soywiz.korlibs.krypto", name = "krypto", version.ref = "krypto" }
 kotlinx-cli = { group = "org.jetbrains.kotlinx", name = "kotlinx-cli", version.ref = "kotlinx-cli" }
 ktor-client-curl = { group = "io.ktor", name = "ktor-client-curl", version.ref = "ktor" }

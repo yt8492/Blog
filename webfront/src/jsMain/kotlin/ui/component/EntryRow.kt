@@ -7,7 +7,8 @@ import react.FC
 import react.Key
 import react.Props
 import react.dom.html.ReactHTML.div
-import react.router.dom.Link
+import tanstack.react.router.Link
+import tanstack.router.core.RoutePath
 import web.cssom.*
 
 val entryRow = FC<EntryRowProps> { props ->
@@ -32,7 +33,7 @@ val entryRow = FC<EntryRowProps> { props ->
         div {
             Link {
                 + "記事を読む"
-                to = "/entries/${entry.id.value}"
+                to = "/entries/${entry.id.value}".unsafeCast<RoutePath>()
 
                 css {
                     fontSize = 16.px
