@@ -2,10 +2,8 @@ package ui.component
 
 import com.yt8492.blog.common.model.Entry
 import emotion.react.css
-import js.reflect.unsafeCast
 import korlibs.time.DateFormat
 import react.FC
-import react.Key
 import react.Props
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
@@ -32,7 +30,6 @@ val entryHeader = FC<EntryHeaderProps> { props ->
         entry.tags.forEach {
             div {
                 + "# $it"
-                key = it.unsafeCast<Key>()
 
                 css {
                     fontSize = 12.px

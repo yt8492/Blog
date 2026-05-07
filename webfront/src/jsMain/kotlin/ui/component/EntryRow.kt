@@ -2,19 +2,16 @@ package ui.component
 
 import com.yt8492.blog.common.model.Entry
 import emotion.react.css
-import js.reflect.unsafeCast
 import react.FC
-import react.Key
 import react.Props
 import react.dom.html.ReactHTML.div
 import tanstack.react.router.Link
-import tanstack.router.core.RoutePath
+import ui.page.entryPath
 import web.cssom.*
 
 val entryRow = FC<EntryRowProps> { props ->
     val entry = props.entry
     div {
-        key = entry.id.value.unsafeCast<Key>()
         entryHeader {
             this.entry = entry
         }
@@ -33,7 +30,7 @@ val entryRow = FC<EntryRowProps> { props ->
         div {
             Link {
                 + "記事を読む"
-                to = "/entries/${entry.id.value}".unsafeCast<RoutePath>()
+                to = entryPath(entry.id.value)
 
                 css {
                     fontSize = 16.px
