@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 group = "org.yt8492"
@@ -23,13 +23,10 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-                implementation("com.soywiz.korlibs.krypto:krypto:4.0.10")
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.krypto)
                 implementation(libs.korlibs.time)
             }
-        }
-        all {
-            languageSettings.enableLanguageFeature("InlineClasses")
         }
     }
 }

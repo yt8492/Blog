@@ -110,6 +110,7 @@ fabric.properties
 /docker/mysql/data
 build/
 .gradle/
+.kotlin/
 **/.DS_Store
 /server/generated
 credentials.json

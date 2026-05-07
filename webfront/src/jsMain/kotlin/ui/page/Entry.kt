@@ -6,6 +6,7 @@ import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
 import emotion.react.css
 import js.coroutines.promise
+import kotlin.js.unsafeCast
 import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
 import react.*
@@ -14,11 +15,12 @@ import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.footer
 import react.router.useLoaderData
 import remix.run.router.LoaderFunction
+import remix.run.router.LoaderFunctionArgs
 import ui.component.*
 import web.cssom.*
 
-val entryLoader = LoaderFunction<dynamic> { arg, _ ->
-    val rawId = arg.params["id"] ?: error("id not found")
+val entryLoader: LoaderFunction<Any?> = { args: LoaderFunctionArgs<Any?>, _: Any? ->
+    val rawId = args.params["id"] ?: error("id not found")
     console.log(rawId)
     val id = EntryId(rawId)
     MainScope().promise {
@@ -26,7 +28,7 @@ val entryLoader = LoaderFunction<dynamic> { arg, _ ->
         console.log(entry)
         entry
     }
-}
+}.unsafeCast<LoaderFunction<Any?>>()
 
 val entryPage = FC<Props> {
     console.log("entry page")

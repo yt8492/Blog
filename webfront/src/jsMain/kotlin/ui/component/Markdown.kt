@@ -68,7 +68,7 @@ val markdown = FC<MarkdownProps> { props ->
                 fontSize = 100.pct
                 wordBreak = WordBreak.normal
                 whiteSpace = WhiteSpace.pre
-                backgroundColor = NamedColor.transparent
+                backgroundColor = Color("transparent")
                 borderWidth = 0.px
 
             }

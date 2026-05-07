@@ -1,12 +1,15 @@
 package ui.page
 
 import emotion.react.css
-import js.objects.jso
+import js.array.ReadonlyArray
+import js.objects.unsafeJso
+import js.reflect.unsafeCast
 import react.FC
 import react.Props
 import react.create
 import react.dom.html.ReactHTML.div
 import react.router.Outlet
+import react.router.RouteObject
 import react.router.dom.RouterProvider
 import react.router.dom.createBrowserRouter
 import ui.component.blogTitle
@@ -29,22 +32,22 @@ val root = FC<Props> {
 
 val appRouter = createBrowserRouter(
     routes = arrayOf(
-        jso {
+        unsafeJso<RouteObject>().apply {
             path = "/"
             element = root.create()
             children = arrayOf(
-                jso {
+                unsafeJso<RouteObject>().apply {
                     index = true
                     element = entriesPage.create()
                 },
-                jso {
+                unsafeJso<RouteObject>().apply {
                     path = "entries/:id"
                     loader = entryLoader
                     element = entryPage.create()
                 },
-            )
+            ).unsafeCast<ReadonlyArray<RouteObject>>()
         },
-    )
+    ).unsafeCast<ReadonlyArray<RouteObject>>()
 )
 
 val rootPage = FC<Props> {

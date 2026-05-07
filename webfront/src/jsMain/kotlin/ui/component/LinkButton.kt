@@ -1,7 +1,9 @@
 package ui.component
 
 import emotion.react.css
+import js.reflect.unsafeCast
 import react.FC
+import react.Key
 import react.Props
 import react.dom.html.ReactHTML.a
 import react.dom.html.ReactHTML.img
@@ -11,8 +13,8 @@ import web.window.WindowTarget
 val linkButton = FC<LinkButtonProps> { props ->
     a {
         href = props.url
-        target = WindowTarget._blank
-        key = props.url
+        target = "_blank".unsafeCast<WindowTarget>()
+        key = props.url.unsafeCast<Key>()
         rel = "nofollow"
         img {
             src = props.src
