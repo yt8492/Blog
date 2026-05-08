@@ -44,7 +44,6 @@ tasks {
 
 repositories {
     mavenCentral()
-    maven("https://kotlin.bintray.com/ktor")
     maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
 }
 

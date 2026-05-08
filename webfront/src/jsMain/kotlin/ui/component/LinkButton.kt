@@ -7,12 +7,12 @@ import react.dom.html.ReactHTML.a
 import react.dom.html.ReactHTML.img
 import web.cssom.*
 import web.window.WindowTarget
+import web.window._blank
 
 val linkButton = FC<LinkButtonProps> { props ->
     a {
         href = props.url
-        target = WindowTarget._blank
-        key = props.url
+        target = WindowTarget.Companion._blank
         rel = "nofollow"
         img {
             src = props.src

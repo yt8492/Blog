@@ -5,6 +5,7 @@ ARG IS_PRODUCTION
 RUN gradle --no-daemon :server:installShadowDist
 
 FROM openjdk:17.0.2-jdk as exec-stage
+RUN microdnf install findutils
 WORKDIR /Blog
 COPY --from=build-stage /Blog/server/build/install/server-shadow .
 

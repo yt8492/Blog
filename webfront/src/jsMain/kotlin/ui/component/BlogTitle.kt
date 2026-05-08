@@ -5,14 +5,15 @@ import emotion.react.css
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.header
-import react.router.dom.Link
+import tanstack.react.router.Link
+import ui.page.ENTRIES_PATH
 import web.cssom.*
 
 val blogTitle = FC<Props> {
     header {
         Link {
             + Constants.BLOG_TITLE
-            to = "/"
+            to = ENTRIES_PATH
             css {
                 color = NamedColor.black
                 textDecoration = None.none

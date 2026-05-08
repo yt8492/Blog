@@ -5,32 +5,25 @@ import com.yt8492.blog.common.Constants
 import com.yt8492.blog.common.model.Entry
 import com.yt8492.blog.common.model.EntryId
 import emotion.react.css
-import js.coroutines.promise
 import kotlinx.browser.document
-import kotlinx.coroutines.MainScope
 import react.*
 import react.dom.html.ReactHTML.article
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.footer
-import react.router.useLoaderData
-import remix.run.router.LoaderFunction
+import tanstack.react.router.useLoaderData
+import tanstack.router.core.LoaderFnContext
+import tanstack.router.core.RouteLoaderFn
 import ui.component.*
 import web.cssom.*
 
-val entryLoader = LoaderFunction<dynamic> { arg, _ ->
-    val rawId = arg.params["id"] ?: error("id not found")
-    console.log(rawId)
+val entryLoader = RouteLoaderFn { args: LoaderFnContext ->
+    val rawId = args.params[ENTRY_ID_PARAM] ?: error("id not found")
     val id = EntryId(rawId)
-    MainScope().promise {
-        val entry = Api.getEntryById(id)
-        console.log(entry)
-        entry
-    }
+    Api.getEntryById(id)
 }
 
 val entryPage = FC<Props> {
-    console.log("entry page")
-    val entry = useLoaderData() as Entry?
+    val entry = useLoaderData { it as Entry? }
     useEffect(entry) {
         entry?.let {
             document.title = """${it.title} - ${Constants.BLOG_TITLE}"""

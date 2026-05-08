@@ -10,14 +10,14 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import react.*
 import react.dom.html.ReactHTML.div
-import react.router.useLocation
+import tanstack.react.router.useLocation
 import ui.component.entryRow
 import web.cssom.Display
 import web.cssom.FlexDirection
 
 val entriesPage = FC<Props> {
     val location = useLocation()
-    val page = parseQueryString(location.search)["page"]?.toIntOrNull() ?: 1
+    val page = parseQueryString(location.searchStr)["page"]?.toIntOrNull() ?: 1
     val (state, setState) = useState(listOf<Entry>())
     useEffect(page) {
         document.title = Constants.BLOG_TITLE

@@ -1,14 +1,17 @@
 package ui.page
 
 import emotion.react.css
-import js.objects.jso
 import react.FC
 import react.Props
-import react.create
 import react.dom.html.ReactHTML.div
-import react.router.Outlet
-import react.router.dom.RouterProvider
-import react.router.dom.createBrowserRouter
+import tanstack.react.router.Outlet
+import tanstack.react.router.RouterProvider
+import tanstack.react.router.createRootRoute
+import tanstack.react.router.createRoute
+import tanstack.react.router.createRouter
+import tanstack.react.router.RouteOptions
+import tanstack.react.router.RootRouteOptions
+import tanstack.react.router.RouterOptions
 import ui.component.blogTitle
 import web.cssom.*
 
@@ -27,25 +30,43 @@ val root = FC<Props> {
     }
 }
 
-val appRouter = createBrowserRouter(
-    routes = arrayOf(
-        jso {
-            path = "/"
-            element = root.create()
-            children = arrayOf(
-                jso {
-                    index = true
-                    element = entriesPage.create()
-                },
-                jso {
-                    path = "entries/:id"
-                    loader = entryLoader
-                    element = entryPage.create()
-                },
-            )
-        },
+fun createAppRouter() = createRootRoute(
+    options = RootRouteOptions(
+        component = root,
+    ),
+).let { rootRoute ->
+    val entriesRoute = createRoute(
+        options = RouteOptions(
+            getParentRoute = { rootRoute },
+            path = ENTRIES_PATH,
+            component = entriesPage,
+        ),
     )
-)
+
+    val entryRoute = createRoute(
+        options = RouteOptions(
+            getParentRoute = { rootRoute },
+            path = ENTRY_ROUTE_PATH,
+            loader = entryLoader,
+            component = entryPage,
+        ),
+    )
+
+    rootRoute.addChildren(
+        arrayOf(
+            entriesRoute,
+            entryRoute,
+        ),
+    )
+
+    createRouter(
+        options = RouterOptions(
+            routeTree = rootRoute,
+        ),
+    )
+}
+
+val appRouter = createAppRouter()
 
 val rootPage = FC<Props> {
     RouterProvider {

@@ -30,7 +30,6 @@ val entryHeader = FC<EntryHeaderProps> { props ->
         entry.tags.forEach {
             div {
                 + "# $it"
-                key = it
 
                 css {
                     fontSize = 12.px
