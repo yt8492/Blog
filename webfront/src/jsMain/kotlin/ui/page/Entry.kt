@@ -75,16 +75,16 @@ val entryPage = FC<Props> {
             }
 
             `@media`(compactEntryMediaQuery) {
-                fontSize = 18.px
+                fontSize = 16.px
 
                 Selector("h1")() {
-                    fontSize = 1.85.rem
+                    fontSize = 1.55.rem
                     lineHeight = 1.35.em
                     marginTop = 8.px
                 }
 
                 Selector("> div:first-of-type")() {
-                    fontSize = 17.px
+                    fontSize = 15.px
                 }
 
                 Selector("> div:nth-of-type(2)")() {
@@ -92,7 +92,7 @@ val entryPage = FC<Props> {
                 }
 
                 Selector("> div:nth-of-type(2) > div")() {
-                    fontSize = 14.px
+                    fontSize = 12.px
                     marginBottom = 6.px
                     padding = Padding(4.px, 7.px)
                 }
@@ -106,7 +106,7 @@ val entryPage = FC<Props> {
                 }
 
                 Selector("table")() {
-                    fontSize = 15.px
+                    fontSize = 14.px
                 }
             }
         }

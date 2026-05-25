@@ -51,19 +51,19 @@ val entriesPage = FC<Props> {
             }
 
             `@media`(compactEntriesMediaQuery) {
-                fontSize = 18.px
+                fontSize = 16.px
 
                 Selector("> div")() {
                     padding = Padding(24.px, 0.px, 22.px)
                 }
 
                 Selector("h1")() {
-                    fontSize = 1.78.rem
+                    fontSize = 1.5.rem
                     lineHeight = 1.35.em
                 }
 
                 Selector("> div > div:first-of-type")() {
-                    fontSize = 17.px
+                    fontSize = 15.px
                 }
 
                 Selector("> div > div:nth-of-type(2)")() {
@@ -71,16 +71,14 @@ val entriesPage = FC<Props> {
                 }
 
                 Selector("> div > div:nth-of-type(2) > div")() {
-                    fontSize = 14.px
+                    fontSize = 12.px
                     marginBottom = 6.px
                     padding = Padding(4.px, 7.px)
                 }
 
                 Selector("> div > div:nth-of-type(3)")() {
-                    fontSize = 18.px
+                    fontSize = 16.px
                     lineHeight = 1.7.em
-                    overflowWrap = OverflowWrap.anywhere
-                    whiteSpace = WhiteSpace.normal
                 }
 
                 Selector("> div > div:nth-of-type(4)")() {
@@ -89,7 +87,7 @@ val entriesPage = FC<Props> {
 
                 Selector("> div > div:nth-of-type(4) a")() {
                     boxSizing = BoxSizing.borderBox
-                    fontSize = 19.px
+                    fontSize = 17.px
                     padding = Padding(13.px, 18.px)
                     textAlign = TextAlign.center
                     width = 100.pct

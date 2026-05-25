@@ -61,6 +61,7 @@ private suspend fun respondEntries(call: ApplicationCall) {
         lang = "ja"
         head {
             meta(charset = "UTF-8")
+            meta(name = "viewport", content = "width=device-width, initial-scale=1")
             title(Constants.BLOG_TITLE)
             link(rel = "icon", type = "image/vnd.microsoft.icon", href = "favicon.ico")
             meta("keywords", "yt8492,マヤミト,ブログ")
@@ -86,6 +87,7 @@ private suspend fun respondEntry(call: ApplicationCall, entry: Entry?) {
         lang = "ja"
         head {
             meta(charset = "UTF-8")
+            meta(name = "viewport", content = "width=device-width, initial-scale=1")
             link(rel = "icon", type = "image/vnd.microsoft.icon", href = "favicon.ico")
             if (entry != null) {
                 val keywords = listOf(
