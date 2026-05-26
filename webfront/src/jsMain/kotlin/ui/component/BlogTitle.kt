@@ -9,6 +9,8 @@ import tanstack.react.router.Link
 import ui.page.ENTRIES_PATH
 import web.cssom.*
 
+private val compactBlogTitleMediaQuery = MediaQuery("(max-width: 640px)")
+
 val blogTitle = FC<Props> {
     header {
         Link {
@@ -25,6 +27,11 @@ val blogTitle = FC<Props> {
             fontSize = 2.rem
             fontWeight = FontWeight.bold
             padding = Padding(28.px, 28.px)
+
+            `@media`(compactBlogTitleMediaQuery) {
+                fontSize = 1.45.rem
+                padding = Padding(20.px, 12.px)
+            }
         }
     }
 }

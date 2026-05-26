@@ -1,10 +1,10 @@
-FROM gradle:8.5.0-jdk17 as build-stage
+FROM gradle:8.5.0-jdk17 AS build-stage
 ADD . /Blog
 WORKDIR /Blog
 ARG IS_PRODUCTION
 RUN gradle --no-daemon :server:installShadowDist
 
-FROM openjdk:17.0.2-jdk as exec-stage
+FROM openjdk:17.0.2-jdk AS exec-stage
 RUN microdnf install findutils
 WORKDIR /Blog
 COPY --from=build-stage /Blog/server/build/install/server-shadow .

@@ -12,8 +12,9 @@ import react.*
 import react.dom.html.ReactHTML.div
 import tanstack.react.router.useLocation
 import ui.component.entryRow
-import web.cssom.Display
-import web.cssom.FlexDirection
+import web.cssom.*
+
+private val compactEntriesMediaQuery = MediaQuery("(max-width: 640px)")
 
 val entriesPage = FC<Props> {
     val location = useLocation()
@@ -36,6 +37,62 @@ val entriesPage = FC<Props> {
         css {
             display = Display.flex
             flexDirection = FlexDirection.column
+
+            Selector("> div")() {
+                padding = Padding(24.px, 0.px, 20.px)
+            }
+
+            Selector("> div:first-of-type")() {
+                paddingTop = 0.px
+            }
+
+            Selector("h1")() {
+                lineHeight = 1.35.em
+            }
+
+            `@media`(compactEntriesMediaQuery) {
+                fontSize = 16.px
+
+                Selector("> div")() {
+                    padding = Padding(24.px, 0.px, 22.px)
+                }
+
+                Selector("h1")() {
+                    fontSize = 1.5.rem
+                    lineHeight = 1.35.em
+                }
+
+                Selector("> div > div:first-of-type")() {
+                    fontSize = 15.px
+                }
+
+                Selector("> div > div:nth-of-type(2)")() {
+                    flexWrap = FlexWrap.wrap
+                }
+
+                Selector("> div > div:nth-of-type(2) > div")() {
+                    fontSize = 12.px
+                    marginBottom = 6.px
+                    padding = Padding(4.px, 7.px)
+                }
+
+                Selector("> div > div:nth-of-type(3)")() {
+                    fontSize = 16.px
+                    lineHeight = 1.7.em
+                }
+
+                Selector("> div > div:nth-of-type(4)")() {
+                    justifyContent = JustifyContent.stretch
+                }
+
+                Selector("> div > div:nth-of-type(4) a")() {
+                    boxSizing = BoxSizing.borderBox
+                    fontSize = 17.px
+                    padding = Padding(13.px, 18.px)
+                    textAlign = TextAlign.center
+                    width = 100.pct
+                }
+            }
         }
     }
 }
